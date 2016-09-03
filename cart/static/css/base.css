@@ -9,7 +9,6 @@ h2 {
 }
 h3 {
   font-size: 2rem;
-  display: inline-block;
 }
 h4 {
   font-size: 1.1rem;
@@ -108,6 +107,15 @@ ul.search-ul-large li.close i {
   margin-left: -1.5rem;
   font-size: 1.4rem;
   color: #ABABAB;
+}
+ul.search-info {
+  list-style: disc;
+  margin: -1rem 0 0 3.5rem;
+  display: inline-block;
+  text-align: left;
+}
+ul.search-info li {
+  list-style: disc;
 }
 .tag-box {
   display: inline-block;

@@ -3,6 +3,6 @@ from django.conf.urls import url
 from .views import ProductListView
 
 urlpatterns = [
-    url(r'^list/$', ProductListView.as_view(), name='product_list'),
+    url(r'^list/$', login_required(ProductListView.as_view()), name='product_list'),
 ]
 

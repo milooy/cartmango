@@ -12,8 +12,7 @@ class Product(models.Model):
         ordering = ["-created"]
 
     # 관계
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=u'사용자',
-                               related_name='my_product')
+    user = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=u'사용자', blank=True)
     mall = models.ForeignKey('Mall', verbose_name=u'쇼핑몰',
                              related_name='mall_product')
     tags = TaggableManager()
@@ -30,6 +29,9 @@ class Product(models.Model):
         null=True, blank=True,
         upload_to='product/%Y/%m/%d',
     )
+
+    def __str__(self):
+        return self.name + self.mall.name
 
 
 class Mall(models.Model):

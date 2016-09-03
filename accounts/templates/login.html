@@ -2,18 +2,27 @@
 
 {% block content %}
 
-    {% if form.errors %}
-        <p>ID나 비밀번호가 일치하지 않습니다</p>
-    {% endif%}
+{% if form.errors %}
+<p>ID나 비밀번호가 일치하지 않습니다</p>
+{% endif%}
 
-    {% if next %}
-        {% if user.is_authenticated %}
-            <p>권한이 없는 페이지입니다</p>
-        {% else %}
-            <p>이 페이지를 보려면 로그인을 해야 합니다</p>
-        {% endif %}
-    {% endif %}
+{% if next %}
+{% if user.is_authenticated %}
+<p>권한이 없는 페이지입니다</p>
+{% else %}
+<p>이 페이지를 보려면 로그인을 해야 합니다</p>
+{% endif %}
+{% endif %}
 
+
+<section class='section row'>
+    <h4 class="col s12">소셜 계정으로 로그인</h4>
+    <div class="btn-large fb-connect col s12 m6">
+        <a href="{% url 'social:begin' 'facebook' %}?next=/list/"><span>f</span>페이스북으로 로그인</a>
+    </div>
+</section>
+<section class='section row'>
+    <h4 class="col s12">이메일로 로그인</h4>
     <form method="post" action="{% url 'login' %}">
         {%  csrf_token %}
         <table>
@@ -26,9 +35,12 @@
             <td>{{ form.password }}</td>
             </tr>
         </table>
-
         <input type="submit" value="로그인" />
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
+</section>
+
+
+
 
 {% endblock %}

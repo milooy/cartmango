@@ -47,6 +47,7 @@
     <![endif]-->
 </head>
 <body>
+<div id="fb-root"></div>
 <script>
     window.fbAsyncInit = function() {
         FB.init({
@@ -63,6 +64,15 @@
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
+//    친구 얼굴 보여지는 페이스북 로그인
+    (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1595414487419363";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 </script>
 {% block body %}
 {% block nav-main %}
@@ -152,6 +162,7 @@
                     <li><a class="white-text" href="#!">장석환</a></li>
                     <li><a class="white-text" href="#!">임관훈</a></li>
                 </ul>
+                <div class="fb-login-button" data-max-rows="1" data-size="icon" data-show-faces="true" data-auto-logout-link="false"></div>
             </div>
         </div>
     </div>
