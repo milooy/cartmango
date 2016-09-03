@@ -37,13 +37,13 @@
     <meta name="twitter:image:src"
           content="{% block tw_image %}{{ SITE_URL }}{% static 'img/test.jpg' %}{% endblock %}"/>
     {% block base-css %}
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
     {% block page-css %}{% endblock %}
     <!--[if lt IE 9]>
-        <script type="text/javascript" src="{% static 'components/html5shiv/dist/html5shiv.js' %}"></script>
+    <script type="text/javascript" src="{% static 'components/html5shiv/dist/html5shiv.js' %}"></script>
     <![endif]-->
 </head>
 <body>
@@ -65,89 +65,83 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
 {% block body %}
-    {% block nav-main %}
-        <ul id="account-dropdown" class="dropdown-content">
-            <li><a href="#!">관심 밋업</a></li>
-            <li><a href="#!">내 밋업</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">설정</a></li>
-            <li><a href="#!">도움말</a></li>
-            <li class="divider"></li>
-            <li><a href="/logout">로그아웃</a></li>
-        </ul>
-        <nav class="nav-main nav-dark nav-transparent" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src="{% static 'img/logo.png' %}"/></a>
-                <ul id="nav-top" class="right hide-on-med-and-down">
-                    <li><a href="/list">장바구니</a></li>
-                    {% if user.is_authenticated %}
-                        <li class="user-info"><a class="dropdown-button" href="#!" data-activates="account-dropdown">
-                            {{ user.nickname }}<img src="{{ user.avatar.url }}"/>
-                            <i class="material-icons right">arrow_drop_down</i></a></li>
-                    {% else %}
-                        <li><a href="/signup">회원가입</a></li>
-                        <li><a href="/login">로그인</a></li>
-                    {% endif %}
-                </ul>
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a href="/meetup/new">밋업 개최</a></li>
-                    <li><a href="/meetup">밋업 목록</a></li>
-                    {% if user.is_authenticated %}
-                        <li class="user-info"><a href="#"><img src="{{ user.avatar.url }}"/>{{ user.nickname }}</a></li>
-                    {% else %}
-                        <li><a href="/signup">회원가입</a></li>
-                        <li><a href="/login">로그인</a></li>
-                    {% endif %}
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
+{% block nav-main %}
+<ul id="account-dropdown" class="dropdown-content">
+    <li><a href="#!">관심 밋업</a></li>
+    <li><a href="#!">내 밋업</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">설정</a></li>
+    <li><a href="#!">도움말</a></li>
+    <li class="divider"></li>
+    <li><a href="/logout">로그아웃</a></li>
+</ul>
+<div class="navbar-fixed">
+    <nav class="nav-main nav-dark nav-transparent" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src="{% static 'img/logo.png' %}"/></a>
+            <ul id="nav-top" class="right hide-on-med-and-down">
+                <li><a href="/list">장바구니</a></li>
+                {% if user.is_authenticated %}
+                <li class="user-info"><a class="dropdown-button" href="#!" data-activates="account-dropdown">
+                    {{ user.nickname }}<img src="{{ user.avatar.url }}"/>
+                    <i class="material-icons right">arrow_drop_down</i></a></li>
+                {% else %}
+                <li><a href="/signup">회원가입</a></li>
+                <li><a href="/login">로그인</a></li>
+                {% endif %}
+            </ul>
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="/meetup/new">밋업 개최</a></li>
+                <li><a href="/meetup">밋업 목록</a></li>
+                {% if user.is_authenticated %}
+                <li class="user-info"><a href="#"><img src="{{ user.avatar.url }}"/>{{ user.nickname }}</a></li>
+                {% else %}
+                <li><a href="/signup">회원가입</a></li>
+                <li><a href="/login">로그인</a></li>
+                {% endif %}
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+</div>
+{% endblock %}
+<div class="container">
+    {% block content %}
     {% endblock %}
-    {% block page-header %}
-        <section class="page-header">
-            <img class="blur_background" src="{% block header-image %}{% endblock %}">
-            <div class="container">
-                <h2 class="header-title">{% block header-title %}내일 뭐하지?{% endblock %}</h2>
-            </div>
-        </section>
-    {% endblock %}
+</div>
+{% block page-footer %}
+<footer class="page-footer">
     <div class="container">
-        {% block content %}
-        {% endblock %}
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">CARTMANGO</h5>
+                <p class="grey-text text-lighten-4">모든 장바구니는 카트망고로 통한다</p>
+            </div>
+            <div class="col l6 s12">
+                <h5 class="white-text">GS SHOP</h5>
+                <ul>
+                    <li><a class="white-text" href="#!">진유림</a></li>
+                    <li><a class="white-text" href="#!">장기효</a></li>
+                    <li><a class="white-text" href="#!">장석환</a></li>
+                    <li><a class="white-text" href="#!">임관훈</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-    {% block page-footer %}
-        <footer class="page-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">CARTMANGO</h5>
-                        <p class="grey-text text-lighten-4">모든 장바구니는 카트망고로 통한다</p>
-                    </div>
-                    <div class="col l6 s12">
-                        <h5 class="white-text">GS SHOP</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">진유림</a></li>
-                            <li><a class="white-text" href="#!">장기효</a></li>
-                            <li><a class="white-text" href="#!">장석환</a></li>
-                            <li><a class="white-text" href="#!">임관훈</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    Made with &#128155; <a href="https://github.com/milooy">GS SHOP</a>
-                </div>
-            </div>
-        </footer>
-    {% endblock %}
+    <div class="footer-copyright">
+        <div class="container">
+            Made with &#128155; <a href="https://github.com/milooy">GS SHOP</a>
+        </div>
+    </div>
+</footer>
+{% endblock %}
 {% endblock %}
 {% block base-js %}
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <script src="{% static 'components/shy-navbar/shy-navbar.js' %}"></script>
-    <script src="{% static 'js/base.js' %}"></script>
-    {% block js %}{% endblock %}
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script src="{% static 'components/shy-navbar/shy-navbar.js' %}"></script>
+<script src="{% static 'js/base.js' %}"></script>
+{% block js %}{% endblock %}
 {% endblock %}
 </div>
 </body>

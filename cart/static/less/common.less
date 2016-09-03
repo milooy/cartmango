@@ -40,9 +40,9 @@ button.big {
 
 //*-- 네비게이션 *--//
 nav.nav-main {
-  position: absolute;
-  z-index: 999 !important;
-  height: @nav-height;
+  //position: absolute;
+  //z-index: 999 !important;
+  //height: @nav-height;
   background: rgba(255, 255, 255, 0.7);
   box-shadow: none;
 
@@ -92,28 +92,6 @@ nav.nav-main {
   }
 }
 
-//*-- 상단 헤더 *--//
-section.page-header {
-  width: 100%;
-  height: @header-height;
-  padding-top: @nav-height; // shy-navbar가 자동으로 absolute 잡아준다
-  z-index: -1;
-  background-color: #EAEAEA;
-  position: relative;
-  overflow: hidden;
-
-  // 이미지 블러: http://zurb.com/article/1325/create-blurred-images-with-html5-canvas
-  .blur_background {
-    position: absolute;
-    z-index: -1;
-    top: -110%;
-    left: 0;
-    width: 100%;
-    -webkit-filter: blur(95px);
-    -webkit-transform: translate3d(0, 0, 0);
-  }
-}
-
 //*-- 페이지 내부 섹션 *--//
 section.section {
 }
@@ -121,17 +99,22 @@ section.section {
 //*-- 꾸밈 요소 *--//
 .tag-box {
   display: inline-block;
-  padding: 2.5px 6px;
-  border-radius: 8px;
+      padding: 2px 6px;
+    border-radius: 3px;
   margin-right: 3px;
   color: white;
-  background: @mid-gray;
+  background: @light-gray-2;
+  a {
+    color: white;
+    font-weight: lighter;
+    font-size: 0.9rem;
+  }
 }
 
 
 //*-- 푸터 *--//
 footer.page-footer {
-  background: #505050;
+  background: #4a4a4a;
 }
 
 //*-- Materializecss override *--//

@@ -1,1 +1,140 @@
-@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);body{font-family:"Noto Sans KR","Apple SD Gothic Neo","Nanum Barun Gothic","Malgun Gothic","돋움",Dotum,sans-serif;color:#404040;font-weight:300}h2{font-size:2.5rem}h3{font-size:2rem;display:inline-block}h4{font-size:1.1rem;font-weight:600;color:#364f6b}img.avatar{width:3rem;height:3rem;border-radius:50%}button.big{width:5.4rem;height:2.7rem;border:none;border-radius:5rem}button.big:hover{background:#446386;transition:background .3s ease}nav.nav-main{position:absolute;z-index:999 !important;height:60px;background:rgba(255,255,255,0.7);box-shadow:none}nav.nav-main.nav-transparent{background:transparent;transition:background-color 1s ease}nav.nav-main #logo-container img{width:160px;margin-top:7px}nav.nav-main ul#nav-top li.user-info img{width:30px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%}nav.nav-main ul#nav-mobile li.user-info img{width:30px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%}nav.nav-main ul#account-dropdown{top:60px !important}nav.nav-main.nav-dark a,nav.nav-main.nav-dark ul a{color:#404040}nav.nav-main.nav-light a,nav.nav-main.nav-light ul a{color:white}section.page-header{width:100%;height:200px;padding-top:60px;z-index:-1;background-color:#EAEAEA;position:relative;overflow:hidden}section.page-header .blur_background{position:absolute;z-index:-1;top:-110%;left:0;width:100%;-webkit-filter:blur(95px);-webkit-transform:translate3d(0, 0, 0)}.tag-box{display:inline-block;padding:2.5px 6px;border-radius:8px;margin-right:3px;color:white;background:#ababab}footer.page-footer{background:#505050}section.title-section{margin-top:-130px}section.title-section .image-container img{width:200px;height:200px}@media (min-width: 600px) and (max-width: 991px),(min-width: 992px){section.title-section .image-container{display:inline-block}}@media (min-width: 600px) and (max-width: 991px),(min-width: 992px){section.title-section .meta-container{display:inline-block;vertical-align:top;margin:2px 0 0 15px}}div.meetup-detail .button-container{margin-top:-60px;margin-left:218px}div.meetup-detail .button-container button.join{width:13rem;background:#364f6b}div.meetup-detail .button-container button.join:before{content:"참여하기"}div.meetup-detail .button-container button.join.joined{background:#f96e73}div.meetup-detail .button-container button.join.joined:before{content:"참여 신청함"}div.meetup-detail .button-container button.like{background:transparent;border:none;margin-left:0.6rem}div.meetup-detail .button-container button.like i{color:#ababab;font-size:2.5rem;vertical-align:middle}div.meetup-detail .button-container button.like i:before{content:"favorite_border"}div.meetup-detail .button-container button.like.liked i{color:#f96e73}div.meetup-detail .button-container button.like.liked i:before{content:"favorite"}div.meetup-detail div.description{background:#f5f5f5;padding:1.4rem;margin-top:1.4rem;border-radius:3px 3px 0 0}div.meetup-detail div.description .info div{font-weight:500}div.meetup-detail div.description .info div i{vertical-align:middle;margin:0 0.2rem 0.4rem 0}div.meetup-detail div.author{border:1.5px solid #f5f5f5;padding:0.5rem 0.7rem;border-radius:0 0 3px 3px;text-align:right}div.meetup-detail div.author p{display:inline-block;vertical-align:bottom;font-weight:500}.users-container{margin-bottom:1.5rem}.users-container .chip{background:#f5f5f5}.comments-container .comments-header span.length{margin-left:0.1rem;vertical-align:super;color:#ababab}.comments-container form#comment .wrapper{display:-webkit-flex;display:flex}.comments-container form#comment .wrapper .textarea{-webkit-flex:1;flex:1;padding:0 1.3rem}.comments-container form#comment .wrapper .textarea textarea{height:3rem;padding-left:1rem;border:1px solid #e0e0e0;border-radius:3rem;word-wrap:break-word;resize:none}.comments-container form#comment .wrapper .textarea textarea:focus{outline:none !important;border:none;box-shadow:0 0 10px rgba(54,79,107,0.28)}.comments-container form#comment .wrapper input{width:5.4rem;height:2.7rem;background:#364f6b;color:white;border:none;border-radius:5rem}.comments-container form#comment .wrapper input:hover{background:#446386;transition:background .3s ease}.comments-container div.comment-list div.comment{display:-webkit-flex;display:flex;margin-top:0.75rem}.comments-container div.comment-list div.comment div.comment-header{-webkit-flex:1;flex:1;padding:0 1.3rem;line-height:0.8rem}.comments-container div.comment-list div.comment div.comment-header .nickname{display:inline-block;font-weight:500}.comments-container div.comment-list div.comment div.comment-header .date{display:inline-block;color:#ababab}.comments-container .pagination{display:none}#map{width:100%;height:300px}#target{width:345px}.controls{margin-top:10px;border:1px solid transparent;border-radius:2px 0 0 2px;box-sizing:border-box;-moz-box-sizing:border-box;height:32px;outline:none;box-shadow:0 2px 6px rgba(0,0,0,0.3)}#pac-input{background-color:#fff;font-family:Roboto;font-size:15px;font-weight:300;margin-left:12px;padding:0 11px 0 13px;text-overflow:ellipsis;width:300px}#pac-input:focus{border-color:#4d90fe}.pac-container{font-family:Roboto}#type-selector{color:#fff;background-color:#4d90fe;padding:5px 11px 0px 11px}#type-selector label{font-family:Roboto;font-size:13px;font-weight:300}.fb-connect{background:#3b5998;color:white;cursor:pointer;text-transform:none;width:15rem;padding:0}.fb-connect:hover{background:#3f5277}.fb-connect a{color:white;display:block;width:100%;height:100%}.fb-connect a span{font-weight:500;margin-right:0.3rem}div.select-avatar{border:1px dashed #e0e0e0;width:7rem;height:7rem;text-align:center;cursor:pointer}div.select-avatar i{color:#e0e0e0;line-height:7rem;font-size:2.7rem}#image_holder img{width:7rem;height:7rem}
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+body {
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Malgun Gothic", "돋움", Dotum, sans-serif;
+  color: #404040;
+  font-weight: 300;
+}
+h2 {
+  font-size: 2.5rem;
+}
+h3 {
+  font-size: 2rem;
+  display: inline-block;
+}
+h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #364F6B;
+}
+img.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+button.big {
+  width: 5.4rem;
+  height: 2.7rem;
+  border: none;
+  border-radius: 5rem;
+}
+button.big:hover {
+  background: #446386;
+  transition: background 0.3s ease;
+}
+nav.nav-main {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+}
+nav.nav-main.nav-transparent {
+  background: transparent;
+  transition: background-color 1s ease;
+}
+nav.nav-main #logo-container img {
+  width: 160px;
+  margin-top: 7px;
+}
+nav.nav-main ul#nav-top li.user-info img {
+  width: 30px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+nav.nav-main ul#nav-mobile li.user-info img {
+  width: 30px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+nav.nav-main ul#account-dropdown {
+  top: 60px !important;
+}
+nav.nav-main.nav-dark a,
+nav.nav-main.nav-dark ul a {
+  color: #404040;
+}
+nav.nav-main.nav-light a,
+nav.nav-main.nav-light ul a {
+  color: white;
+}
+.tag-box {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-right: 3px;
+  color: white;
+  background: #d1d1d1;
+}
+.tag-box a {
+  color: white;
+  font-weight: lighter;
+  font-size: 0.9rem;
+}
+footer.page-footer {
+  background: #4a4a4a;
+}
+div.product-card .product-img {
+  width: 100%;
+}
+div.product-card h3 {
+  font-size: 1rem;
+  color: #404040;
+  margin: 0;
+}
+div.product-card .price {
+  color: #3FC1C9;
+  font-weight: bolder;
+}
+div.product-card .mall-name {
+  margin: 3px 0;
+  color: #ABABAB;
+}
+div.product-card .mall-name img {
+  width: 1.2rem;
+}
+.fb-connect {
+  background: #3b5998;
+  color: white;
+  cursor: pointer;
+  text-transform: none;
+  width: 15rem;
+  padding: 0;
+}
+.fb-connect:hover {
+  background: #3f5277;
+}
+.fb-connect a {
+  color: white;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.fb-connect a span {
+  font-weight: 500;
+  margin-right: 0.3rem;
+}
+div.select-avatar {
+  border: 1px dashed #E0E0E0;
+  width: 7rem;
+  height: 7rem;
+  text-align: center;
+  cursor: pointer;
+}
+div.select-avatar i {
+  color: #E0E0E0;
+  line-height: 7rem;
+  font-size: 2.7rem;
+}
+#image_holder img {
+  width: 7rem;
+  height: 7rem;
+}

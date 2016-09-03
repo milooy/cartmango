@@ -19,17 +19,28 @@ class Product(models.Model):
     tags = TaggableManager()
 
     # 정보
-    name = models.CharField(u'제목', max_length=200)
+    name = models.CharField(u'상품명', max_length=200)
     url = models.CharField(u'링크', max_length=300)
     price = models.PositiveIntegerField(u'가격', default=0, null=True, blank=True)
     created = models.DateTimeField(u'생성일', default=timezone.now)
     thumbnail = ResizedImageField(
         u'썸네일',
         size=[900, 900], quality=80,
+        crop=['middle', 'center'],
         null=True, blank=True,
-        upload_to='%Y/%m/%d',
+        upload_to='product/%Y/%m/%d',
     )
 
 
 class Mall(models.Model):
     name = models.CharField(u'쇼핑몰 이름', max_length=200)
+    thumbnail = ResizedImageField(
+        u'썸네일',
+        size=[900, 900], quality=80,
+        null=True, blank=True,
+        upload_to='mall/%Y/%m/%d',
+    )
+
+    def __str__(self):
+        return self.name
+

@@ -63,6 +63,7 @@ bower_components
 media
 collected_static
 db.sqlite3
+cart/static/css
 
 # 잠시 빼놓자
 settings.py
