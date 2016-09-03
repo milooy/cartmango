@@ -1,0 +1,7 @@
+{
+  "name": "smart-shopping-cart",
+  "dependencies": {
+    "moment": "~2.11.1",
+    "shy-navbar": "https://github.com/lqez/shy-navbar.git"
+  }
+}

@@ -1,0 +1,43 @@
+@import (once) "var";
+.fb-connect {
+  background: #3b5998;
+  color: white;
+  cursor: pointer;
+  text-transform: none;
+  width: 15rem;
+  padding: 0;
+
+  &:hover {
+    background: #3f5277;
+  }
+  a {
+    color: white;
+    display: block;
+    width: 100%;
+    height: 100%;
+    span {
+      font-weight: 500;
+      margin-right: 0.3rem;
+    }
+  }
+}
+
+div.select-avatar {
+  border: 1px dashed @material-gray;
+  width: 7rem;
+  height: 7rem;
+  text-align: center;
+  cursor: pointer;
+  i {
+    color: @material-gray;
+    line-height: 7rem;
+    font-size: 2.7rem;
+  }
+}
+
+#image_holder {
+  img {
+    width: 7rem;
+    height: 7rem;
+  }
+}

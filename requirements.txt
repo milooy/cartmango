@@ -1,0 +1,6 @@
+django==1.10.1
+django-resized
+django-taggit
+django-filter
+image
+python-social-auth

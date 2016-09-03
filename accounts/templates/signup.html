@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block header-image %}{% endblock %}
+{% block header-title %}회원가입{% endblock %}
+{% block content %}
+    <section class='section row'>
+        <h4 class="col s12">소셜 계정으로 바로 가입</h4>
+        <div class="btn-large fb-connect col s12 m6">
+            <a href="{% url 'social:begin' 'facebook' %}?next=''"><span>f</span>페이스북으로 회원가입</a>
+        </div>
+    </section>
+    <section class='section row'>
+        <h4 class="col s12">이메일로 가입</h4>
+        <form id="signup" class="form-horizontal col s12 m6" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="select-avatar">
+                <i class="material-icons">&#xE439;</i>
+            </div>
+            <div id="image_holder"></div>
+            <input class='hide' id="id_avatar" name="avatar" type="file" accept="image/*">
+            {#            {{ signupform.avatar }}#}
+            {{ signupform.avatar.errors|striptags }}
+            {{ signupform.username }}
+            {{ signupform.username.errors|striptags }}
+
+            {{ signupform.email }}
+            {{ signupform.email.errors|striptags }}
+
+            {{ signupform.nickname }}
+            {{ signupform.nickname.errors|striptags }}
+
+
+            {{ signupform.password1 }}
+            {{ signupform.password1.errors|striptags }}
+
+            {{ signupform.password2 }}
+            {{ signupform.password2.errors|striptags }}
+
+
+
+
+            <button id="signup" name="signup" class="btn-large btn-block btn-default" type="submit">가입하기</button>
+        </form>
+    </section>
+    이미 계정이 있으신 분은 <a href="{% url 'login' %}">로그인</a> 해주세요.
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/image_uploader.js' %}"></script>
+    <script src="{% static 'js/accounts.js' %}"></script>
+{% endblock %}

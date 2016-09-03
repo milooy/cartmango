@@ -1,0 +1,137 @@
+@import (once) "var";
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@header-height: 200px;
+@nav-height: 60px;
+
+//*-- 공용 *--//
+body {
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Malgun Gothic", "돋움", Dotum, sans-serif;
+  color: @font-primary;
+  font-weight: 300;
+}
+h2 {
+  font-size: 2.5rem;
+}
+h3 {
+  font-size: 2rem;
+  display: inline-block;
+}
+h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: @primary;
+}
+img.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+button.big {
+  width: 5.4rem;
+  height: 2.7rem;
+  border: none;
+  border-radius: 5rem;
+  &:hover {
+    background: lighten(@primary, 8%);
+    transition: @background-transition;
+  }
+}
+
+//*-- 네비게이션 *--//
+nav.nav-main {
+  position: absolute;
+  z-index: 999 !important;
+  height: @nav-height;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+
+  &.nav-transparent {
+    background: transparent;
+    transition: background-color 1s ease;
+  }
+
+  #logo-container {
+    img {
+      width: 160px;
+      margin-top: 7px;
+    }
+  }
+  ul#nav-top {
+    li.user-info {
+      img {
+        width: 30px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+    }
+  }
+  ul#nav-mobile {
+    li.user-info {
+      img {
+        width: 30px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+    }
+  }
+  ul#account-dropdown {
+    top: @nav-height !important;
+  }
+  &.nav-dark { //네비게이션 흑화 버전
+    a, ul a {
+      color : @font-primary;
+    }
+  }
+  &.nav-light { //네비게이션 천사 버전
+    a, ul a {
+      color : white;
+    }
+  }
+}
+
+//*-- 상단 헤더 *--//
+section.page-header {
+  width: 100%;
+  height: @header-height;
+  padding-top: @nav-height; // shy-navbar가 자동으로 absolute 잡아준다
+  z-index: -1;
+  background-color: #EAEAEA;
+  position: relative;
+  overflow: hidden;
+
+  // 이미지 블러: http://zurb.com/article/1325/create-blurred-images-with-html5-canvas
+  .blur_background {
+    position: absolute;
+    z-index: -1;
+    top: -110%;
+    left: 0;
+    width: 100%;
+    -webkit-filter: blur(95px);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+
+//*-- 페이지 내부 섹션 *--//
+section.section {
+}
+
+//*-- 꾸밈 요소 *--//
+.tag-box {
+  display: inline-block;
+  padding: 2.5px 6px;
+  border-radius: 8px;
+  margin-right: 3px;
+  color: white;
+  background: @mid-gray;
+}
+
+
+//*-- 푸터 *--//
+footer.page-footer {
+  background: #505050;
+}
+
+//*-- Materializecss override *--//
