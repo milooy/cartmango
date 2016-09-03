@@ -67,8 +67,7 @@
 {% block body %}
 {% block nav-main %}
 <ul id="account-dropdown" class="dropdown-content">
-    <li><a href="#!">관심 밋업</a></li>
-    <li><a href="#!">내 밋업</a></li>
+    <li><a href="#!">즐겨찾기</a></li>
     <li class="divider"></li>
     <li><a href="#!">설정</a></li>
     <li><a href="#!">도움말</a></li>
@@ -78,7 +77,25 @@
 <div class="navbar-fixed">
     <nav class="nav-main nav-dark nav-transparent" role="navigation">
         <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src="{% static 'img/logo.png' %}"/></a>
-            <ul id="nav-top" class="right hide-on-med-and-down">
+            <ul class="search-ul-large right hide-on-med-and-down">
+                <li class="search">
+                    <a href="#" class="search-large">
+                        <i class="material-icons">&#xE8B6;</i>
+                    </a>
+                </li>
+                <li class="search-box">
+                    <div class="search-container">
+                        <form action="{% url 'product_list' %}" method="get">
+                            <input name="query" type="text" placeholder="검색"/>
+                            <input class='submit hide' type="submit"/>
+                        </form>
+                    </div>
+                </li>
+                <li class="close">
+                    <i class="material-icons">&#xE5CD;</i>
+                </li>
+            </ul>
+            <ul id="nav-top" class="right account-large hide-on-med-and-down">
                 <li><a href="/list">장바구니</a></li>
                 {% if user.is_authenticated %}
                 <li class="user-info"><a class="dropdown-button" href="#!" data-activates="account-dropdown">
@@ -100,6 +117,17 @@
                 {% endif %}
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" class="search-mobile right hide-on-large-only"><i class="material-icons">&#xE8B6;</i></a>
+            <div class="search-box-mobile hide-on-large-only">
+                <div class="search-container">
+                    <form action="{% url 'product_list' %}" method="get">
+                        <input name="query" type="text" placeholder="제품 검색"/>
+                        <i class="material-icons">&#xE5CD;</i>
+                        <input class='submit hide' type="submit"/>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </nav>
 </div>

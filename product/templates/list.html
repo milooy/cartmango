@@ -3,12 +3,6 @@
 {% load humanize %}
 {% block content %}
 <div class="row">
-    <div class="col s12">
-        <form action="" method="get">
-            <p><label for="id_title" class="">통합검색</label> <input id="id_title" name="query" type="text"></p>
-            <input type="submit" value="검색">
-        </form>
-    </div>
     {% for product in object_list %}
     <div class="col s6 m4">
         <div class="product-card">

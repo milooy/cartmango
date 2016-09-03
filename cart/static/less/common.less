@@ -61,6 +61,8 @@ nav.nav-main {
     li.user-info {
       img {
         width: 30px;
+        vertical-align: text-bottom;
+        margin-left: 5px;
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
         border-radius: 50%;
@@ -74,6 +76,8 @@ nav.nav-main {
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
         border-radius: 50%;
+        vertical-align: middle;
+        margin-right: 5px;
       }
     }
   }
@@ -92,6 +96,50 @@ nav.nav-main {
   }
 }
 
+.search-mobile {
+  margin-right: 3px;
+}
+.search-box-mobile {
+  display: none;
+  float: none !important;
+  margin-left: 40px;
+  margin-right: 60px;
+  input[name='query'] {
+    position: relative;
+    //background: rgb(247, 247, 247);
+    color: @font-primary;
+  }
+  i {
+    position: relative;
+    cursor: pointer;
+    top: -71px;
+    float: right;
+    font-size: 1.4rem !important;
+    color: @mid-gray;
+  }
+}
+ul.search-ul-large {
+  a:hover {
+    background-color: transparent;
+  }
+
+  li.search-box {
+    display: none;
+    input {
+      color: @font-primary;
+    }
+  }
+  li.close {
+    display: none;
+    cursor: pointer;
+    i {
+      margin-left: -1.5rem;
+      font-size: 1.4rem;
+      color: @mid-gray;
+    }
+  }
+}
+
 //*-- 페이지 내부 섹션 *--//
 section.section {
 }
@@ -99,8 +147,8 @@ section.section {
 //*-- 꾸밈 요소 *--//
 .tag-box {
   display: inline-block;
-      padding: 2px 6px;
-    border-radius: 3px;
+  padding: 2px 6px;
+  border-radius: 3px;
   margin-right: 3px;
   color: white;
   background: @light-gray-2;
