@@ -6,4 +6,5 @@ from api import views
 urlpatterns = [
     # rest framework
     url(r'^product/$', views.ProductViewSet.as_view({'get': 'list'})),
+    url(r'^product/add/$', views.add_product, name='add_product'),
 ]
