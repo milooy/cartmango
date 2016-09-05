@@ -4,3 +4,4 @@ django-taggit
 django-filter
 image
 python-social-auth
+djangorestframework<4.0

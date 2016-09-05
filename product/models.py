@@ -22,6 +22,7 @@ class Product(models.Model):
     url = models.CharField(u'링크', max_length=300)
     price = models.PositiveIntegerField(u'가격', default=0, null=True, blank=True)
     created = models.DateTimeField(u'생성일', default=timezone.now)
+    thumbnail_url = models.CharField(u'썸네일 url', max_length=1000, null=True, blank=True)
     thumbnail = ResizedImageField(
         u'썸네일',
         size=[900, 900], quality=80,

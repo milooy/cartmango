@@ -22,6 +22,7 @@ from . import views
 urlpatterns = [
     url(r'', include('product.urls')),
     url(r'', include('accounts.urls')),
+    url(r'^api/', include('api.urls')),
     url(r'', include('social.apps.django_app.urls', namespace='social')),
     url(r'^$', views.HomeView.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
