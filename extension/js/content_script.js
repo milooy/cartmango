@@ -1,8 +1,3 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//   console.log("content loaded");
-//   console.log("Meta description property : ", $('meta[property="og:description"]'));
-// });
-
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
   if (request.action == "getProductInfo") {
@@ -22,6 +17,7 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
   getProductInfo();
 });
 
+// 상품정보 DB에 저장하기
 function saveProductInfo(data) {
   chrome.storage.sync.set({"productName": data.productName, "productImage": data.productImage, "productUrl": data.productUrl}, function() {
     console.log("product saved to the storage.");
@@ -31,13 +27,26 @@ function saveProductInfo(data) {
   });
 }
 
+// 상품정보 DB에서 가져오기
 function getProductInfo() {
   chrome.storage.sync.get("productName", function(data) {
     console.log("returned data : ",data);
   });
 }
 
+// content_script.js 의 $ 접근은, 크롬 익스텐션에서 실행한 popup 페이지의 DOM 접근이다.
 function onWindowLoad() {
+
+
+  $("button").click(function() {
+    console.log("clicked");
+
+    // 아래와 같은 ajax 콜로 서버로 해당 데이터를 보낼 수 있다.
+    // $.ajax({url: "http://query.yahooapis.com/v1/public/yql?q=select woeid from geo.placefinder where text='35,126' and gflags='R'&format=json",
+    //   success: function(result){
+    //       console.log("ajax result : ", result);
+    //   }});
+  });
 
   var product_image = document.querySelector('#product_image');
   var product_name = document.querySelector('#product_name');
