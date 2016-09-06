@@ -1,24 +1,27 @@
 {
   "manifest_version": 2,
 
-  "name": "유르무르 크롬앱",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "Cart Mango",
+  "description": "This extension shows you the future of online shopping",
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": {
+        "19" : "img/logo_yellow.png",
+        "38" : "img/logo_yellow.png"
+      },
     "default_popup": "popup.html"
   },
-  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
+  "icons": {
+    "16"  : "img/logo_yellow.png",
+    "48"  : "img/logo_yellow.png",
+    "128" : "img/logo_yellow.png"
+  },
   "content_scripts": [
     {
-      "matches": ["http://urlhere/*"],
-      "js": ["contentscript.js"]
+      "matches": ["http://*/*"],
+      "js": ["js/jquery.js","js/content_script.js"]
     }
   ],
-  "permissions": [
-    "tabs",
-    "activeTab",
-    "https://ajax.googleapis.com/"
-  ]
+  "permissions": ["tabs", "<all_urls>", "storage"]
 }
