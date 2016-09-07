@@ -1,7 +1,6 @@
 from django.core.paginator import EmptyPage
 from django.db.models import Q
 from django.http import Http404
-from django.shortcuts import render
 from django.views.generic import ListView
 import django_filters
 from cart.mixins import FilterMixin
@@ -18,8 +17,8 @@ class ProductFilter(django_filters.FilterSet):
 
     def filter_query(self, queryset, value):
         return queryset.filter(
-            Q(name__contains=value) |
-            Q(tags__name__contains=value)
+            Q(product__name__icontains=value) |
+            Q(tags__name__icontains=value)
         ).distinct()
 
 
