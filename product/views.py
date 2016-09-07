@@ -1,12 +1,11 @@
 from django.core.paginator import EmptyPage
 from django.db.models import Q
 from django.http import Http404
-from django.shortcuts import render
 from django.views.generic import ListView
 import django_filters
 from cart.mixins import FilterMixin
 
-from .models import Product
+from .models import Product, PersonalProduct
 
 
 class ProductFilter(django_filters.FilterSet):
@@ -18,13 +17,13 @@ class ProductFilter(django_filters.FilterSet):
 
     def filter_query(self, queryset, value):
         return queryset.filter(
-            Q(name__contains=value) |
-            Q(tags__name__contains=value)
+            Q(product__name__icontains=value) |
+            Q(tags__name__icontains=value)
         ).distinct()
 
 
 class ProductListView(ListView, FilterMixin):
-    model = Product
+    model = PersonalProduct
     template_name = 'list.html'
     paginate_by = 10
     filter_class = ProductFilter

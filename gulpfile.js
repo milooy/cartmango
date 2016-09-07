@@ -6,14 +6,15 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync');
 
 gulp.task('less', function() {
-  return gulp.src('./cart/static/less/base.less')
-      .pipe(less().on('error', function(err) {
-        console.log(err);
-      }))
-      .pipe(minifyCSS({keepBreaks: false}))
-      .pipe(gulp.dest('./cart/static/css'));
+    console.log("less compiled");
+    return gulp.src('./cart/static/less/base.less')
+        .pipe(less().on('error', function(err) {
+            console.log(err);
+        }))
+        .pipe(minifyCSS({keepBreaks: false}))
+        .pipe(gulp.dest('./cart/static/css'));
 });
 
 gulp.task('default', ['less'], function() {
-  gulp.watch('./cart/static/less/base.less', ['less']);
+    gulp.watch('./cart/static/less/*.less', ['less']);
 });

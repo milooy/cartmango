@@ -16,6 +16,18 @@ h2 {
 h3 {
   font-size: 2rem;
 }
+h3.header {
+  padding: 9px;
+  font-size: 1.4em;
+  border: 2px solid @light-gray-2;
+  color: @light-gray-2;
+  font-weight: 300;
+  margin: 0 0 10px;
+  strong {
+    color: @primary-light;
+    font-weight: 300;
+  }
+}
 h4 {
   font-size: 1.1rem;
   font-weight: 600;
@@ -39,15 +51,12 @@ button.big {
 
 //*-- 네비게이션 *--//
 nav.nav-main {
-  //position: absolute;
-  //z-index: 999 !important;
-  //height: @nav-height;
-  background: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: none;
+  transition: @transition;
 
   &.nav-transparent {
-    background: transparent;
-    transition: background-color 1s ease;
+    background-color: transparent;
   }
 
   #logo-container {
@@ -154,20 +163,36 @@ section.section {
 }
 
 //*-- 꾸밈 요소 *--//
-.tag-box {
-  display: inline-block;
-  padding: 2px 6px;
-  border-radius: 3px;
-  margin-right: 3px;
-  color: white;
-  background: @light-gray-2;
-  a {
+.tag-container {
+  max-height: 2rem;
+  .tag-box {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin: 0 3px 17px 0;
+    overflow: hidden;
     color: white;
-    font-weight: lighter;
-    font-size: 0.9rem;
+    background: @light-gray-2;
+    transition: @background-transition;
+    &:hover {
+      background: darken(@light-gray-2, 5);
+    }
+    a {
+      color: white;
+      font-weight: lighter;
+      font-size: 0.9rem;
+    }
   }
 }
 
+.highlight-mark {
+  width: 0.8rem;
+  height: 0.8rem;
+  background: @light-gray-2;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 5px;
+}
 
 //*-- 푸터 *--//
 footer.page-footer {
