@@ -19,6 +19,9 @@
         {% for product in object_list %}
             <div class="col s6 m4 l3">
                 <div class="product-card">
+                    <div class="favorite">
+                        <i class="material-icons">&#xE87D;</i>
+                    </div>
                     <a href="{{ product.url }}">
                         <img class="product-img" src="{{product.thumbnail.url}}"/>
                         <div class="info">
@@ -30,10 +33,9 @@
                             </div>
                         </div>
                     </a>
-                <a class='dropdown-button right' href='#' data-activates='dropdown{{ product.id }}'>
-                    <i class="material-icons">&#xE5CF;</i>
-                </a>
-
+                    <a class='dropdown-button right' href='#' data-activates='dropdown{{ product.id }}'>
+                        <i class="material-icons">&#xE5CF;</i>
+                    </a>
                     <div class="tag-container">
                         {% for tag in product.tags.all %}
                             <div class="tag-box"><a href="?query={{ tag }}"># {{ tag }}</a></div>
@@ -41,15 +43,14 @@
                     </div>
                 </div>
             </div>
-
             <ul id='dropdown{{ product.id }}' class='dropdown-content'>
                 <li><a class="modal-trigger" href="#modal{{ product.id }}"><i class="material-icons">&#xE263;</i>가격비교</a></li>
+                <li><a href="#!"><i class="material-icons">&#xE87D;</i>즐겨찾기</a></li>
                 <li class="divider"></li>
                 <li><a href="#!"><i class="material-icons">&#xE876;</i>보관</a></li>
                 <li><a href="#!"><i class="material-icons">&#xE150;</i>수정</a></li>
                 <li><a href="#!"><i class="material-icons">&#xE872;</i>삭제</a></li>
             </ul>
-            <!-- Modal Structure -->
             <div id="modal{{ product.id }}" class="price-modal modal bottom-sheet">
                 <div class="modal-content">
                     <h4>가격 비교</h4>

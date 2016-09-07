@@ -12,8 +12,18 @@
   margin: 3px 0;
   color: @mid-gray;
 }
+
 div.product-card {
   margin-bottom: 0.85rem;
+  position: relative;
+  .favorite {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    i {
+      color: @warning;
+    }
+  }
   .product-img {
     width: 100%;
   }
@@ -57,7 +67,7 @@ div.price-modal {
       li.collection-item {
         padding-left: 96px;
         .inner {
-              margin-right: 22px;
+          margin-right: 22px;
         }
         .title {
           font-size: 1rem;
