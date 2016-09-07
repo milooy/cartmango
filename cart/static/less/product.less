@@ -1,25 +1,31 @@
 @import (once) "var";
 
 div.product-card {
+      margin-bottom: 0.85rem;
   .product-img {
     width: 100%;
+  }
+  .info {
+    height: 5.6rem;
   }
   h3 {
     font-size: 1rem;
     color: @font-primary;
+    max-height: 2.1rem;
     margin: 0;
+    overflow: hidden;
   }
   .price {
     color: @secondary;
-        font-weight: bolder;
+    font-weight: bolder;
   }
   .mall-name {
     img {
+      height: 1.2rem;
       width: 1.2rem;
+          vertical-align: sub;
     }
-        margin: 3px 0;
+    margin: 3px 0;
     color: @mid-gray;
-
   }
-
 }

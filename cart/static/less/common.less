@@ -39,15 +39,12 @@ button.big {
 
 //*-- 네비게이션 *--//
 nav.nav-main {
-  //position: absolute;
-  //z-index: 999 !important;
-  //height: @nav-height;
-  background: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: none;
+  transition: @transition;
 
   &.nav-transparent {
-    background: transparent;
-    transition: background-color 1s ease;
+    background-color: transparent;
   }
 
   #logo-container {
@@ -154,17 +151,21 @@ section.section {
 }
 
 //*-- 꾸밈 요소 *--//
-.tag-box {
-  display: inline-block;
-  padding: 2px 6px;
-  border-radius: 3px;
-  margin-right: 3px;
-  color: white;
-  background: @light-gray-2;
-  a {
+.tag-container {
+  max-height: 2rem;
+  .tag-box {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+        margin: 0 3px 17px 0;
+    overflow: hidden;
     color: white;
-    font-weight: lighter;
-    font-size: 0.9rem;
+    background: @light-gray-2;
+    a {
+      color: white;
+      font-weight: lighter;
+      font-size: 0.9rem;
+    }
   }
 }
 

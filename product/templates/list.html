@@ -17,15 +17,17 @@
         {% endif %}
     {% endif %}
     {% for product in object_list %}
-    <div class="col s6 m4">
+    <div class="col s6 m4 l3">
         <div class="product-card">
             <a href="{{ product.url }}">
                 <img class="product-img" src="{{product.thumbnail.url}}"/>
-                <h3>{{ product.name }}</h3>
-                <div class="price">{{ product.price|intcomma }}원</div>
-                <div class="mall-name">
-                    <img src="{{ product.mall.thumbnail.url }}"/>
-                    {{ product.mall.name }}
+                <div class="info">
+                    <h3>{{ product.name|truncatechars:33 }}</h3>
+                    <div class="price">{{ product.price|intcomma }}원</div>
+                    <div class="mall-name">
+                        <img src="{{ product.mall.thumbnail.url }}"/>
+                        {{ product.mall.name }}
+                    </div>
                 </div>
             </a>
             <div class="tag-container">
