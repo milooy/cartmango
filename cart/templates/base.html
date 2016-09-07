@@ -11,6 +11,7 @@
     <meta name="language" content="Korean">
     <meta http-equiv="content-language" content="KO">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
     <!-- title -->
     <title>{% block title %}CARTMANGO{% endblock %}</title>
     <meta name="title" content="{% block meta_title %}CARTMANGO{% endblock %}"/>
@@ -19,6 +20,7 @@
     <meta name="keywords"
           content="{% block meta_keywords %}쇼핑, shopping, cart{% endblock %}">
     {% block meta_extra %}{% endblock %}
+
     <!-- og -->
     <meta property="og:site_name" content="CARTMANGO"/>
     <meta property="og:type" content="{% block og_type %}website{% endblock %}"/>
@@ -28,6 +30,7 @@
           content="{% block og_description %}모든 장바구니는 카트망고로 향한다.CARTMANGO{% endblock %}"/>
     <meta property="og:image"
           content="{% block og_image %}{{ SITE_URL }}{% static 'img/test.jpg' %}{% endblock %}"/>
+
     <!-- twitter -->
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:url" content="{% block tw_url %}{{ SITE_URL }}{% endblock %}"/>
@@ -36,6 +39,26 @@
           content="{% block tw_description %}모두를 위한 장바구니, CARTMANGO{% endblock %}"/>
     <meta name="twitter:image:src"
           content="{% block tw_image %}{{ SITE_URL }}{% static 'img/test.jpg' %}{% endblock %}"/>
+
+    <!-- favicon & app icon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/favicon.ico/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'img/favicon.ico/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/favicon.ico/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/favicon.ico/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/favicon.ico/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'img/favicon.ico/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'img/favicon.ico/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'img/favicon.ico/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon.ico/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'img/favicon.ico/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon.ico/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon.ico/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon.ico/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'img/favicon.ico/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'img/favicon.ico/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
     {% block base-css %}
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
@@ -151,11 +174,11 @@
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
-                    <div class="col l6 s12">
+                    <div class="col s6">
                         <h5 class="white-text">CARTMANGO</h5>
                         <p class="grey-text text-lighten-4">모든 장바구니는 카트망고로 통한다</p>
                     </div>
-                    <div class="col l6 s12">
+                    <div class="col s6">
                         <h5 class="white-text">GS SHOP</h5>
                         <ul>
                             <li><a class="white-text" href="#!">진유림</a></li>
