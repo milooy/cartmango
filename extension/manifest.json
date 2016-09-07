@@ -8,15 +8,15 @@
 
   "browser_action": {
     "default_icon": {
-        "19" : "img/logo_yellow.png",
-        "38" : "img/logo_yellow.png"
+        "19" : "img/icon-tilted.png",
+        "38" : "img/icon-tilted.png"
       },
     "default_popup": "popup.html"
   },
   "icons": {
-    "16"  : "img/logo_yellow.png",
-    "48"  : "img/logo_yellow.png",
-    "128" : "img/logo_yellow.png"
+    "16"  : "img/icon-tilted.png",
+    "48"  : "img/icon-tilted.png",
+    "128" : "img/icon-tilted.png"
   },
 
   "background": {

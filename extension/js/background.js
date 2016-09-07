@@ -3,10 +3,10 @@
 // found in the LICENSE file.
 
 
-chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
-  // Use the token.
-  console.log(token);
-});
+//chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+//  // Use the token.
+//  console.log(token);
+//});
 
 
 
