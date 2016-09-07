@@ -38,6 +38,10 @@ function getProductInfo() {
 function onWindowLoad() {
 
 
+  chrome.tabs.getSelected(null, function(tab) {
+      console.log("tabUrl : " , tab.url);
+  });
+
   $("button").click(function() {
     console.log("clicked");
 
