@@ -2,41 +2,97 @@
 {% load staticfiles %}
 {% load humanize %}
 {% block content %}
-<div class="row">
-    {% if request.GET.query %}
-        <h3 class="header"><strong>#</strong> {{ request.GET.query }} 모아보기</h3>
-        {% if not object_list %}
-            <section class="center-block center-align">
-                <h5 class="header">검색 결과가 없습니다.</h5>
-                <ul class="search-info">
-                    <li>단어 철자를 확인해 주세요.</li>
-                    <li>띄어쓰기를 다시 해보세요.</li>
-                    <li>보다 일반적인 단어로 검색해주세요.</li>
-                </ul>
-            </section>
+    <div class="row">
+        {% if request.GET.query %}
+            <h3 class="header"><strong>#</strong> {{ request.GET.query }} 모아보기</h3>
+            {% if not object_list %}
+                <section class="center-block center-align">
+                    <h5 class="header">검색 결과가 없습니다.</h5>
+                    <ul class="search-info">
+                        <li>단어 철자를 확인해 주세요.</li>
+                        <li>띄어쓰기를 다시 해보세요.</li>
+                        <li>보다 일반적인 단어로 검색해주세요.</li>
+                    </ul>
+                </section>
+            {% endif %}
         {% endif %}
-    {% endif %}
-    {% for product in object_list %}
-    <div class="col s6 m4 l3">
-        <div class="product-card">
-            <a href="{{ product.url }}">
-                <img class="product-img" src="{{product.thumbnail.url}}"/>
-                <div class="info">
-                    <h3>{{ product.name|truncatechars:33 }}</h3>
-                    <div class="price">{{ product.price|intcomma }}원</div>
-                    <div class="mall-name">
-                        <img src="{{ product.mall.thumbnail.url }}"/>
-                        {{ product.mall.name }}
+        {% for product in object_list %}
+            <div class="col s6 m4 l3">
+                <div class="product-card">
+                    <a href="{{ product.url }}">
+                        <img class="product-img" src="{{product.thumbnail.url}}"/>
+                        <div class="info">
+                            <h3>{{ product.name|truncatechars:33 }}</h3>
+                            <div class="price">{{ product.price|intcomma }}원</div>
+                            <div class="mall-name">
+                                <img src="{{ product.mall.thumbnail.url }}"/>
+                                {{ product.mall.name }}
+                            </div>
+                        </div>
+                    </a>
+                <a class='dropdown-button right' href='#' data-activates='dropdown{{ product.id }}'>
+                    <i class="material-icons">&#xE5CF;</i>
+                </a>
+
+                    <div class="tag-container">
+                        {% for tag in product.tags.all %}
+                            <div class="tag-box"><a href="?query={{ tag }}"># {{ tag }}</a></div>
+                        {% endfor %}
                     </div>
                 </div>
-            </a>
-            <div class="tag-container">
-                {% for tag in product.tags.all %}
-                <div class="tag-box"><a href="?query={{ tag }}"># {{ tag }}</a></div>
-                {% endfor %}
             </div>
-        </div>
+
+            <ul id='dropdown{{ product.id }}' class='dropdown-content'>
+                <li><a class="modal-trigger" href="#modal{{ product.id }}"><i class="material-icons">&#xE263;</i>가격비교</a></li>
+                <li class="divider"></li>
+                <li><a href="#!"><i class="material-icons">&#xE876;</i>보관</a></li>
+                <li><a href="#!"><i class="material-icons">&#xE150;</i>수정</a></li>
+                <li><a href="#!"><i class="material-icons">&#xE872;</i>삭제</a></li>
+            </ul>
+            <!-- Modal Structure -->
+            <div id="modal{{ product.id }}" class="price-modal modal bottom-sheet">
+                <div class="modal-content">
+                    <h4>가격 비교</h4>
+                    <ul class="collection">
+                        <li class="collection-item avatar">
+                            <div class="inner">
+                                <img class="product-img" src="{% static 'img/test/toy-1.png' %}"/>
+                                <a href="http://toy.interpark.com/product/MallDisplay.do?_method=Detail&sc.prdNo=4192559398#"><span class="title">[비비하우스][젤리캣] 국민애착인형 베이지 버니-M</span></a>
+                                <div class="price">46,000원</div>
+                                <p class="mall-name">
+                                    <img class="mall-img" src="/media/mall/2016/09/05/interpark.png">인터파크
+                                </p>
+                            </div>
+                            <a href="#!" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <div class="inner">
+                                <img class="product-img" src="{% static 'img/test/toy-2.png' %}"/>
+                                <a href="http://toy.interpark.com/product/MallDisplay.do?_method=Detail&sc.prdNo=4192559398#"><span class="title">국민애착인형블라썸 크림 버니-L</span></a>
+                                <div class="price">49,500원</div>
+                                <p class="mall-name">
+                                    <img class="mall-img" src="/media/mall/2016/09/07/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2016-09-07_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.59.43.png">Auction
+                                </p>
+                            </div>
+                            <a href="#!" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <div class="inner">
+                                <img class="product-img" src="{% static 'img/test/toy-3.png' %}"/>
+                                <a href="http://toy.interpark.com/product/MallDisplay.do?_method=Detail&sc.prdNo=4192559398#"><span class="title">[젤리캣] 블라썸 튤립 핑크 버니-M</span></a>
+                                <div class="price">38,500원</div>
+                                <p class="mall-name">
+                                    <img class="mall-img" src="/media/mall/2016/09/05/gs_shop_logo.png">GS SHOP
+                                </p>
+                            </div>
+                            <a href="#!" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/product.js' %}"></script>
 {% endblock %}

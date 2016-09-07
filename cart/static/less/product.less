@@ -1,5 +1,17 @@
 @import (once) "var";
-
+.price {
+  color: @secondary;
+  font-weight: bolder;
+}
+.mall-name {
+  img {
+    height: 1.2rem;
+    width: 1.2rem;
+    vertical-align: sub;
+  }
+  margin: 3px 0;
+  color: @mid-gray;
+}
 div.product-card {
   margin-bottom: 0.85rem;
   .product-img {
@@ -15,17 +27,57 @@ div.product-card {
     margin: 0;
     overflow: hidden;
   }
-  .price {
-    color: @secondary;
-    font-weight: bolder;
+
+}
+
+.dropdown-button {
+  color: @light-gray-2;
+  cursor: pointer;
+  transition: @transition;
+  &:hover {
+    color: @primary-light;
   }
-  .mall-name {
-    img {
-      height: 1.2rem;
-      width: 1.2rem;
-      vertical-align: sub;
+}
+.dropdown-content {
+  li {
+    a {
+      font-size: 1em;
+      color: @font-secondary;
     }
-    margin: 3px 0;
-    color: @mid-gray;
+    i {
+      font-size: 1em;
+    }
+
+  }
+}
+
+div.price-modal {
+  .modal-content {
+    ul.collection {
+      li.collection-item {
+        padding-left: 96px;
+        .inner {
+              margin-right: 22px;
+        }
+        .title {
+          font-size: 1rem;
+          color: @font-primary;
+        }
+        .product-img {
+          position: absolute;
+          width: 70px;
+          height: 70px;
+          overflow: hidden;
+          left: 15px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+        .secondary-content {
+          i {
+            color: #c8c8c8;
+          }
+        }
+      }
+    }
   }
 }
