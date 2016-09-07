@@ -4,7 +4,7 @@
 {% block content %}
 <div class="row">
     {% if request.GET.query %}
-        <h3>{{ request.GET.query }} 모아보기</h3>
+        <h3 class="header"><strong>#</strong> {{ request.GET.query }} 모아보기</h3>
         {% if not object_list %}
             <section class="center-block center-align">
                 <h5 class="header">검색 결과가 없습니다.</h5>

@@ -37,9 +37,9 @@
     <meta name="twitter:image:src"
           content="{% block tw_image %}{{ SITE_URL }}{% static 'img/test.jpg' %}{% endblock %}"/>
     {% block base-css %}
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
     {% block page-css %}{% endblock %}
     <!--[if lt IE 9]>
@@ -65,121 +65,122 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-//    친구 얼굴 보여지는 페이스북 로그인
+    //    친구 얼굴 보여지는 페이스북 로그인
     (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1595414487419363";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1595414487419363";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 {% block body %}
-{% block nav-main %}
-<ul id="account-dropdown" class="dropdown-content">
-    <li><a href="#!">즐겨찾기</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">설정</a></li>
-    <li><a href="#!">도움말</a></li>
-    <li class="divider"></li>
-    <li><a href="/logout">로그아웃</a></li>
-</ul>
-<div class="navbar-fixed">
-    <nav class="nav-main nav-dark nav-transparent" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src="{% static 'img/logo.png' %}"/></a>
-            <ul class="search-ul-large right hide-on-med-and-down">
-                <li class="search">
-                    <a href="#" class="search-large">
-                        <i class="material-icons">&#xE8B6;</i>
-                    </a>
-                </li>
-                <li class="search-box">
-                    <div class="search-container">
-                        <form action="{% url 'product_list' %}" method="get">
-                            <input name="query" type="text" placeholder="검색"/>
-                            <input class='submit hide' type="submit"/>
-                        </form>
+    {% block nav-main %}
+        <ul id="account-dropdown" class="dropdown-content">
+            <li><a href="#!">즐겨찾기</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">설정</a></li>
+            <li><a href="#!">도움말</a></li>
+            <li class="divider"></li>
+            <li><a href="/logout">로그아웃</a></li>
+        </ul>
+        <div class="navbar-fixed">
+            <nav class="nav-main nav-dark nav-transparent" role="navigation">
+                <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src="{% static 'img/logo.png' %}"/></a>
+                    <ul class="search-ul-large right hide-on-med-and-down">
+                        <li class="search">
+                            <a href="#" class="search-large">
+                                <i class="material-icons">&#xE8B6;</i>
+                            </a>
+                        </li>
+                        <li class="search-box">
+                            <div class="search-container">
+                                <form action="{% url 'product_list' %}" method="get">
+                                    <input name="query" type="text" placeholder="검색"/>
+                                    <input class='submit hide' type="submit"/>
+                                </form>
+                            </div>
+                        </li>
+                        <li class="close">
+                            <i class="material-icons">&#xE5CD;</i>
+                        </li>
+                    </ul>
+                    <ul id="nav-top" class="right account-large hide-on-med-and-down">
+                        <li><a href="/list">장바구니</a></li>
+                        <li><a href="/list/star">즐겨찾기</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="user-info"><a class="dropdown-button" href="#!" data-activates="account-dropdown">
+                                {{ user.nickname }}<img src="{{ user.avatar.url }}"/>
+                                <i class="material-icons right">arrow_drop_down</i></a></li>
+                        {% else %}
+                            <li><a href="/signup">회원가입</a></li>
+                            <li><a href="/login">로그인</a></li>
+                        {% endif %}
+                    </ul>
+                    <ul id="nav-mobile" class="side-nav">
+                        <li><a href="/list">장바구니</a></li>
+                        <li><a href="/list/star">즐겨찾기</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="user-info"><a href="#"><img src="{{ user.avatar.url }}"/>{{ user.nickname }}</a></li>
+                        {% else %}
+                            <li><a href="/signup">회원가입</a></li>
+                            <li><a href="/login">로그인</a></li>
+                        {% endif %}
+                    </ul>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <a href="#" class="search-mobile right hide-on-large-only"><i class="material-icons">&#xE8B6;</i></a>
+                    <div class="search-box-mobile hide-on-large-only">
+                        <div class="search-container">
+                            <form action="{% url 'product_list' %}" method="get">
+                                <input name="query" type="text" placeholder="제품 검색"/>
+                                <i class="material-icons">&#xE5CD;</i>
+                                <input class='submit hide' type="submit"/>
+                            </form>
+                        </div>
                     </div>
-                </li>
-                <li class="close">
-                    <i class="material-icons">&#xE5CD;</i>
-                </li>
-            </ul>
-            <ul id="nav-top" class="right account-large hide-on-med-and-down">
-                <li><a href="/list">장바구니</a></li>
-                {% if user.is_authenticated %}
-                <li class="user-info"><a class="dropdown-button" href="#!" data-activates="account-dropdown">
-                    {{ user.nickname }}<img src="{{ user.avatar.url }}"/>
-                    <i class="material-icons right">arrow_drop_down</i></a></li>
-                {% else %}
-                <li><a href="/signup">회원가입</a></li>
-                <li><a href="/login">로그인</a></li>
-                {% endif %}
-            </ul>
-            <ul id="nav-mobile" class="side-nav">
-                <li><a href="/meetup/new">밋업 개최</a></li>
-                <li><a href="/meetup">밋업 목록</a></li>
-                {% if user.is_authenticated %}
-                <li class="user-info"><a href="#"><img src="{{ user.avatar.url }}"/>{{ user.nickname }}</a></li>
-                {% else %}
-                <li><a href="/signup">회원가입</a></li>
-                <li><a href="/login">로그인</a></li>
-                {% endif %}
-            </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            <a href="#" class="search-mobile right hide-on-large-only"><i class="material-icons">&#xE8B6;</i></a>
-            <div class="search-box-mobile hide-on-large-only">
-                <div class="search-container">
-                    <form action="{% url 'product_list' %}" method="get">
-                        <input name="query" type="text" placeholder="제품 검색"/>
-                        <i class="material-icons">&#xE5CD;</i>
-                        <input class='submit hide' type="submit"/>
-                    </form>
+
+                </div>
+            </nav>
+        </div>
+    {% endblock %}
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% block page-footer %}
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">CARTMANGO</h5>
+                        <p class="grey-text text-lighten-4">모든 장바구니는 카트망고로 통한다</p>
+                    </div>
+                    <div class="col l6 s12">
+                        <h5 class="white-text">GS SHOP</h5>
+                        <ul>
+                            <li><a class="white-text" href="#!">진유림</a></li>
+                            <li><a class="white-text" href="#!">장기효</a></li>
+                            <li><a class="white-text" href="#!">장석환</a></li>
+                            <li><a class="white-text" href="#!">임관훈</a></li>
+                        </ul>
+                        <div class="fb-login-button" data-max-rows="1" data-size="icon" data-show-faces="true" data-auto-logout-link="false"></div>
+                    </div>
                 </div>
             </div>
-
-        </div>
-    </nav>
-</div>
-{% endblock %}
-<div class="container">
-    {% block content %}
+            <div class="footer-copyright">
+                <div class="container">
+                    Made with &#128155; <a href="https://github.com/milooy">GS SHOP</a>
+                </div>
+            </div>
+        </footer>
     {% endblock %}
-</div>
-{% block page-footer %}
-<footer class="page-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">CARTMANGO</h5>
-                <p class="grey-text text-lighten-4">모든 장바구니는 카트망고로 통한다</p>
-            </div>
-            <div class="col l6 s12">
-                <h5 class="white-text">GS SHOP</h5>
-                <ul>
-                    <li><a class="white-text" href="#!">진유림</a></li>
-                    <li><a class="white-text" href="#!">장기효</a></li>
-                    <li><a class="white-text" href="#!">장석환</a></li>
-                    <li><a class="white-text" href="#!">임관훈</a></li>
-                </ul>
-                <div class="fb-login-button" data-max-rows="1" data-size="icon" data-show-faces="true" data-auto-logout-link="false"></div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            Made with &#128155; <a href="https://github.com/milooy">GS SHOP</a>
-        </div>
-    </div>
-</footer>
-{% endblock %}
 {% endblock %}
 {% block base-js %}
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-<script src="{% static 'js/base.js' %}"></script>
-{% block js %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+    {% block js %}{% endblock %}
 {% endblock %}
 </div>
 </body>
