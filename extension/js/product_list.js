@@ -1,31 +1,33 @@
 function onWindowLoad() {
 
-  // console.log("background.js loaded");
-  chrome.storage.sync.get("productName", function(data) {
-    console.log("background returned Name : ", data);
+  var productList = ["productName", "productImage", "productUrl"];
 
-    var ele = document.querySelector('#product_name');
-    ele.innerText = data.productName;
+  chrome.storage.sync.get(null, function(data) {
+    console.log("data list : ", data);
+
+    for (var key in data) {
+      var productName = data[key].productName;
+      var productImage = data[key].productImage;
+      var productUrl = data[key].productUrl;
+      // if (data.hasOwnProperty(key)) {
+      //   console.log(key + " : " + data[key]);
+      // }
+      console.log(key + "'s 제품 정보는 : " + productName + productImage + productUrl);
+
+      $("ul").append("<li><img style=\"height:150px; width:150px; padding:10px 10px;\" src="+productImage+"><span>"+productName+"</span><a href="+productUrl+" style=\"margin-left: 10px;\" class=\"btn btn-primary btn-lg active\" role=\"button\">상품 페이지</a><br></li>");
+    }
+
+
+    // html 페이지에 입력
+    // var ele = document.querySelector('#product_name');
+    // ele.innerText = data.productName;
+    // ele = document.querySelector('#product_image');
+    // ele.src = data.productImage;
+    // ele = document.querySelector('#product_url');
+    // ele.href = data.productUrl;
   });
 
-  chrome.storage.sync.get("productImage", function(data) {
-    console.log("background returned Image : ", data);
-
-    var ele = document.querySelector('#product_image');
-    ele.src = data.productImage;
-  });
-
-  chrome.storage.sync.get("productUrl", function(data) {
-    console.log("background returned Url : ", data);
-
-    var ele = document.querySelector('#product_url');
-    ele.href = data.productUrl;
-  });
-
-  // $("#product_name").innerText = productName;
 }
-
-console.log($(document));
 
 window.addEventListener('click',function(e){
   if(e.target.href!==undefined){

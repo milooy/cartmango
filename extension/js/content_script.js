@@ -1,3 +1,12 @@
+//
+//
+
+// 현재 열린 tab 의 url 반환
+// function getCurrentUrl() {
+//   chrome.tabs.getSelected(null, function(tab) {
+//       console.log("tabUrl : " , tab.url);
+//   });
+// }
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
   if (request.action == "getProductInfo") {
@@ -9,38 +18,42 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     product_url.href = product.productUrl;
   }
 
-  if (request.action == "getProductPrice") {
-    product_price.innerText = request.source.productPrice;
-  }
+  // if (request.action == "getProductPrice") {
+  //   product_price.innerText = request.source.productPrice;
+  // }
 
   saveProductInfo(request.source);
-  getProductInfo();
+  // getProductInfo();
 });
 
 // 상품정보 DB에 저장하기
 function saveProductInfo(data) {
-  chrome.storage.sync.set({"productName": data.productName, "productImage": data.productImage, "productUrl": data.productUrl}, function() {
+
+  // 데이터 모델 객체 생성
+  // key : 상품명
+  // value : 상품정보(상품명, 이미지, URL)
+  var key = data.productName;
+  var dataModel = {};
+  dataModel[key] = data;
+
+  chrome.storage.sync.set(dataModel, function() {
     console.log("product saved to the storage.");
 
     // Notify that we saved.
-    // message('Product saved');
+    // message('Product saved!!');
   });
 }
 
 // 상품정보 DB에서 가져오기
-function getProductInfo() {
-  chrome.storage.sync.get("productName", function(data) {
-    console.log("returned data : ",data);
-  });
-}
+// function getProductInfo() {
+//   chrome.storage.sync.get("productName", function(data) {
+//     console.log("returned data : ",data);
+//   });
+// }
 
 // content_script.js 의 $ 접근은, 크롬 익스텐션에서 실행한 popup 페이지의 DOM 접근이다.
 function onWindowLoad() {
 
-
-  chrome.tabs.getSelected(null, function(tab) {
-      console.log("tabUrl : " , tab.url);
-  });
 
   $("button").click(function() {
     console.log("clicked");
