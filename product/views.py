@@ -6,7 +6,7 @@ from django.views.generic import ListView
 import django_filters
 from cart.mixins import FilterMixin
 
-from .models import Product
+from .models import Product, PersonalProduct
 
 
 class ProductFilter(django_filters.FilterSet):
@@ -24,7 +24,7 @@ class ProductFilter(django_filters.FilterSet):
 
 
 class ProductListView(ListView, FilterMixin):
-    model = Product
+    model = PersonalProduct
     template_name = 'list.html'
     paginate_by = 10
     filter_class = ProductFilter

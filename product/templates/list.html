@@ -16,42 +16,42 @@
                 </section>
             {% endif %}
         {% endif %}
-        {% for product in object_list %}
+        {% for personal_product in object_list %}
             <div class="col s6 m4 l3">
                 <div class="product-card">
-                    <div class="favorite">
-                        <i class="material-icons">&#xE87D;</i>
-                    </div>
-                    <a href="{{ product.url }}">
-                        <img class="product-img" src="{{product.thumbnail.url}}"/>
+                    {% if personal_product.is_favorite %}
+                        <i class="favorite material-icons">&#xE87D;</i>
+                    {% endif %}
+                    <a href="{{ personal_product.product.url }}">
+                        <img class="product-img" src="{{ personal_product.product.thumbnail.url}}"/>
                         <div class="info">
-                            <h3>{{ product.name|truncatechars:33 }}</h3>
-                            <div class="price">{{ product.price|intcomma }}원</div>
+                            <h3>{{ personal_product.product.name|truncatechars:33 }}</h3>
+                            <div class="price">{{ personal_product.product.price|intcomma }}원</div>
                             <div class="mall-name">
-                                <img src="{{ product.mall.thumbnail.url }}"/>
-                                {{ product.mall.name }}
+                                <img src="{{ personal_product.product.mall.thumbnail.url }}"/>
+                                {{ personal_product.product.mall.name }}
                             </div>
                         </div>
                     </a>
-                    <a class='dropdown-button right' href='#' data-activates='dropdown{{ product.id }}'>
+                    <a class='dropdown-button right' href='#' data-activates='dropdown{{ personal_product.id }}'>
                         <i class="material-icons">&#xE5CF;</i>
                     </a>
                     <div class="tag-container">
-                        {% for tag in product.tags.all %}
+                        {% for tag in personal_product.tags.all %}
                             <div class="tag-box"><a href="?query={{ tag }}"># {{ tag }}</a></div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
-            <ul id='dropdown{{ product.id }}' class='dropdown-content'>
-                <li><a class="modal-trigger" href="#modal{{ product.id }}"><i class="material-icons">&#xE263;</i>가격비교</a></li>
+            <ul id='dropdown{{ personal_product.id }}' class='dropdown-content'>
+                <li><a class="modal-trigger" href="#modal{{ personal_product.id }}"><i class="material-icons">&#xE263;</i>가격비교</a></li>
                 <li><a href="#!"><i class="material-icons">&#xE87D;</i>즐겨찾기</a></li>
                 <li class="divider"></li>
                 <li><a href="#!"><i class="material-icons">&#xE876;</i>보관</a></li>
                 <li><a href="#!"><i class="material-icons">&#xE150;</i>수정</a></li>
                 <li><a href="#!"><i class="material-icons">&#xE872;</i>삭제</a></li>
             </ul>
-            <div id="modal{{ product.id }}" class="price-modal modal bottom-sheet">
+            <div id="modal{{ personal_product.id }}" class="price-modal modal bottom-sheet">
                 <div class="modal-content">
                     <h4>가격 비교</h4>
                     <ul class="collection">
