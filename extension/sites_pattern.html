@@ -1,0 +1,94 @@
+제목 : 상품 정보를 담기 위한 사이트 패턴 파악하기
+내용 : 상품 가격 | 이름 | 이미지 | URL 패턴 조사
+대상 : 쿠팡 / GS SHOP / 11번가 / 아마존 / 이베이(코리아)
+
+
+<!--  --> 결론 : 더 연구 필요함 (특정한 속성 값으로 뺼 수 있게끔 프로그램 가능한지 확인) / Strong 으로 보통 감싸짐 (검색 결과에 더 반영되기 위해)
+<!-- @@ 가격 패턴 -->
+<!-- 1) 쿠팡 -->
+  <div class="prod-price__origin ">
+    <span id="totalPrice">5,900</span>원
+      <span class="prod-delivery__title-badge">
+        <img src="//img2a.coupangcdn.com/image/coupang/product/badge-rocket__2x.png" class="prod-delivery__rocket">
+      </span>
+  </div>
+<!-- 2) GSShop -->
+  <div class="price_info">
+    <div class="price_big">
+      <div class="price-definition">
+        <div class="price-definition-upper">
+          <del>351,000</del>원
+        </div>
+        <div class="price-definition-base">
+        <span class="price-definition-gs"><em>GS</em>가</span>
+        <span class="price-definition-ins"><ins><strong>343,980</strong></ins>원
+
+  <div class="purchase-merit-substance-single">
+    <strong> 319,902원 </strong>
+  </div>
+<!-- 3) 11번가 -->
+  <meta property="product:price:amount" content="4900"> 정상가
+  <meta property="price" content="3900"> 할인가
+<!-- 4) 아마존 -->
+  <span id="priceblock_dealprice" class="a-size-medium a-color-price">$26.97</span>
+<!-- 5) Ebay  : http://item2.gmarket.co.kr/Item/DetailView/Item.aspx?goodscode=681916640-->
+  <meta property="twitter:title" content="유어걸 롱 티셔츠 9,900원">
+  //
+  <div class="price">
+    <strong class="numstyle">9,900</strong>
+    <span class="txtstyle">원</span>
+  </div>
+  //
+  <span id="BDsalePrice">117.97</span>
+
+
+
+<!--  --> 결론 : title 또는 og title 로 접근
+<!-- @@ 상품명 패턴 -->
+<!-- 1) 쿠팡 -->
+  <meta property="og:title" content="엘르 추석선물추천★ 가족사랑 아웃도어">
+  <title>쿠팡! | 엘르 추석선물추천★ 가족사랑 아웃도어</title>
+<!-- 2) GSShop -->
+  <meta property="og:title" content="LG HD 클래식 LED 80cm TV 32LF641R 스탠드">
+  <title>LG HD 클래식 LED 80cm TV 32LF641R 스탠드 - GS SHOP</title>
+<!-- 3) 11번가 -->
+  <title>[CJ프레시웨이]추석선물세트 LA꽃갈비세트 1.6kg - 11번가</title>
+<!-- 4) 아마존 -->
+  <meta name="title" content="Amazon Tap - Portable Bluetooth Speaker - Alexa-Enabled">
+  <title>Amazon Tap - Portable Bluetooth Speaker - Alexa-Enabled</title>
+<!-- 5) Ebay -->
+  <title> Fred Perry Brentham Zip Through Showerproof Jacket J8228 Navy | eBay </title>
+  <meta property="og:title" content="Fred Perry Brentham Zip Through Showerproof Jacket J8228 Navy">
+
+
+
+<!--  --> 결론 : og:image 로 접근
+<!-- @@ 이미지 패턴 -->
+<!-- 1) 쿠팡 -->
+  <meta property="og:image" content="vendor_inventory/images/2016/08/30/13/4/7fb84456-8975-4856-bcd5-5720ea8535c9.jpg">
+  <meta property="og:description" content="COUPANG">
+<!-- 2) GSShop -->
+  <meta property="og:image" content="http://image.gsshop.com/mi09/deal/dealno/206/201659134814756293.jpg">
+<!-- 3) 11번가 -->
+  <meta property="og:image" content="http://i.011st.com/t/300_0/an/8/4/2/0/4/0/1550842040_B_V7.jpg">
+<!-- 4) 아마존 -->
+  <img alt="Amazon Tap - Alexa-Enabled Portable Bluetooth Speaker" src="https://images-na.ssl-images-amazon.com/images/I/71DldQJhhXL._SY355_.jpg"
+  data-old-hires="https://images-na.ssl-images-amazon.com/images/I/71DldQJhhXL._SL1000_.jpg"
+  class="a-dynamic-image  a-stretch-vertical" id="landingImage">
+<!-- 5) Ebay -->
+  <meta property="og:image" content="http://i.ebayimg.com/images/i/191737626450-0-1/s-l1000.jpg">
+
+
+
+<!-- --> 결론 : 브라우저에 로딩된 url 저장으로 해결
+<!-- @@ URL 패턴 -->
+<!-- 1) 쿠팡 -->
+  ?? <meta property="og:description" content="COUPANG">
+<!-- 2) GSShop -->
+  <meta property="og:url" content="http://www.gsshop.com/prd/prd.gs?prdid=19602053&amp;media=zt">
+<!-- 3) 11번가 -->
+  ??
+<!-- 4) 아마존 -->
+  <link rel="canonical" href="https://www.amazon.com/SToK-Caffeinated-264-Count-Single-Serve-Packages/dp/B00284TTG2">
+<!-- 5) Ebay -->
+  <meta property="og:url" content="http://www.ebay.com/itm/Fred-Perry-Brentham-Zip-Through-Showerproof-Jacket-J8228-Navy-/191737626450">

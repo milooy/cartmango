@@ -66,3 +66,6 @@ collected_static
 db.sqlite3
 cart/static/css
 secrets.json
+
+# etc
+.zip
