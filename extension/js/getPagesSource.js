@@ -5,12 +5,14 @@ function getProductInfo(doc) {
   var productNameElement = document.querySelector('meta[property="og:title"]').content;
   var productImageElement = document.querySelector('meta[property="og:image"]').content;
   var productUrlElement = document.querySelector('meta[property="og:url"]').content;
+  var productSiteElement = document.querySelector('meta[property="og:site_name"]').content;
   // console.log(" productUrlElement : ", productUrlElement);
 
   var product = {
     "productName" : productNameElement,
     "productImage" : productImageElement,
-    "productUrl" : productUrlElement
+    "productUrl" : productUrlElement,
+    "productSiteElement" : productSiteElement
   }
 
   return product;
@@ -28,12 +30,12 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 
    // GS Shop 물품 가격 선택 로직
   //  console.log("document strong : ", $(".price_big").find("strong")[0].innerText );
-  //  var chosenPrice = $(".price_big").find("strong")[0].innerText;
-  //  sendResponse({price: chosenPrice});
+   var chosenPrice = $(".price_big").find("strong")[0].innerText;
+   sendResponse({price: chosenPrice});
 
    // 핑크퐁 북스토어 가격 선택 로직
-   var chosenPrice = $(".price").find("strong")[0].innerText;
-   sendResponse({price: chosenPrice});
+  //  var chosenPrice = $(".price").find("strong")[0].innerText;
+  //  sendResponse({price: chosenPrice});
 
    // 사용자가 직접 가격 선택 로직
   //  $(document).click(function (e) {
