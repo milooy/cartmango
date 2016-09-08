@@ -1,9 +1,11 @@
 // 페이지 역할 : Extension Popup.html 의 DOM 접근
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
+
   chrome.tabs.getSelected(null, function(tab) {
     chrome.tabs.sendRequest(tab.id, {action: "getDocument"}, function(response) {
       console.log("상품 가격 : ", response.price);
+      product_price.innerText = response.price;
       chrome.storage.local.set({"price" : response.price});
     });
   });
@@ -15,6 +17,7 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     product_image.src = product.productImage;
     product_name.innerText = product.productName;
     product_url.href = product.productUrl;
+    product_site.innerText = product.productSiteElement;
   }
 
   // if (request.action == "getProductPrice") {
