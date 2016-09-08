@@ -10,16 +10,27 @@ from .models import Product, PersonalProduct
 
 class ProductFilter(django_filters.FilterSet):
     query = django_filters.MethodFilter()
+    order = django_filters.MethodFilter()
 
     class Meta:
         model = Product
-        fields = ['query']
+        fields = ['query', 'order']
 
     def filter_query(self, queryset, value):
+        print("쿼리")
         return queryset.filter(
             Q(product__name__icontains=value) |
             Q(tags__name__icontains=value)
         ).distinct()
+
+    def filter_order(self, queryset, value):
+        print("프라이스")
+        if(value=='price-high'):
+            return queryset.order_by('-product__price')
+        elif(value=='price-low'):
+            return queryset.order_by('product__price')
+        else:
+            return queryset
 
 
 class ProductListView(ListView, FilterMixin):

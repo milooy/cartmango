@@ -16,6 +16,17 @@
                 </section>
             {% endif %}
         {% endif %}
+        <div class="row product-order">
+            <div class="input-field col s12 m3 right">
+                <select  class="browser-default">
+                    <option value="" disabled selected>정렬 방식</option>
+                    <option value="created">담은순 정렬</option>
+                    <option value="price-low">낮은 가격순</option>
+                    <option value="price-high">높은 가격순</option>
+                    <option value="popular">인기순</option>
+                </select>
+            </div>
+        </div>
         {% for personal_product in object_list %}
             <div class="col s6 m4 l3">
                 <div class="product-card">
@@ -64,7 +75,7 @@
                                     <img class="mall-img" src="/media/mall/2016/09/05/interpark.png">인터파크
                                 </p>
                             </div>
-                            <a href="#!" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
+                            <a href="#!" onclick="Materialize.toast('장바구니에 담겼습니다', 3000)" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
                         </li>
                         <li class="collection-item avatar">
                             <div class="inner">
@@ -75,7 +86,7 @@
                                     <img class="mall-img" src="/media/mall/2016/09/07/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2016-09-07_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.59.43.png">Auction
                                 </p>
                             </div>
-                            <a href="#!" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
+                            <a href="#!" onclick="Materialize.toast('장바구니에 담겼습니다', 3000)" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
                         </li>
                         <li class="collection-item avatar">
                             <div class="inner">
@@ -86,7 +97,7 @@
                                     <img class="mall-img" src="/media/mall/2016/09/05/gs_shop_logo.png">GS SHOP
                                 </p>
                             </div>
-                            <a href="#!" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
+                            <a href="#!" onclick="Materialize.toast('장바구니에 담겼습니다', 3000)" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
                         </li>
                     </ul>
                 </div>
