@@ -34,9 +34,31 @@
     <div id='product_name'>Injecting Product Name....</div>
     <!-- <div id='product_price'>Injecting Product Price....</div> -->
     <div align="center" style="padding: 15px 15px;">
-      <a href="product_list.html" class="btn btn-primary btn-lg active" role="button">통합 장바구니로</a>
+      <button type="button" class="btn btn-success" id="go_to_homepage">통합 홈페이지로 가기</button>
     </div>
+    <button type="button" class="btn btn-success" id="price_inspector">가격 선택</button>
     <button>서버로 보내기</button>
     <h4 hidden><a id='product_url' href="">상품 URL</a></h4>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">담고 싶은 상품 가격을 클릭해주세요.</h4>
+          </div>
+          <div class="modal-body">
+            <p>Some text in the modal.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </body>
 </html>

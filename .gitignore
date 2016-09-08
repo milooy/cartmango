@@ -68,4 +68,5 @@ cart/static/css
 secrets.json
 
 # etc
-.zip
+*.zip
+*.png
