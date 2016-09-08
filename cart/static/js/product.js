@@ -15,19 +15,35 @@ function materializeInit() {
     $('select').material_select();
 }
 
+function filteredUrl(filter_name, val) {
+    var url;
+    var href = location.href;
+    var pathname = location.pathname;
+    var search = location.search;
+    var filter_value = search.getValueByKey(filter_name);
+    if(filter_value) {
+        var filter_val = location.search.getValueByKey(filter_name);
+        url = pathname + search.replace(filter_val, val);
+    } else {
+        if(search) {
+            url = href + '&'+filter_name+'=' + val;
+        } else {
+            url = href + '?'+filter_name+'=' + val;
+        }
+    }
+    return url;
+}
+
 
 $(document).ready(function () {
     materializeInit();
     var order_query = location.search.getValueByKey('order');
-    $("select").change(function() {
-        var pathname = location.pathname;
-        var query = location.search.getValueByKey('query');
-        if(query) {
-            pathname += ('?query='+query+'&order=' + this.value);
-        } else {
-            pathname += ('?order=' + this.value);
-        }
-        window.location = pathname;
+    $("select.select-order").change(function() {
+        window.location = filteredUrl('order', this.value);
     });
-    $("select option[value="+order_query+"]").attr("selected", "selected");
+    $("select.select-list").change(function() {
+        window.location = filteredUrl('list', this.value);
+    });
+    $(".select-order option[value="+location.search.getValueByKey('order')+"]").attr("selected", "selected");
+    $(".select-list option[value="+location.search.getValueByKey('list')+"]").attr("selected", "selected");
 });
