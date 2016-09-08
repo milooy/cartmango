@@ -1,6 +1,4 @@
-// @author Rob W <http://stackoverflow.com/users/938089/rob-w>
-// Demo: var serialized_html = DOMtoString(document);
-
+// 페이지 역할 : 브라우저에 로딩된 페이지의 DOM 접근
 
 function getProductInfo(doc) {
 
@@ -24,8 +22,27 @@ chrome.runtime.sendMessage({
 });
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
- if (request.action == "getDOM")
-   sendResponse({dom: "The dom that you want to get"});
- else
-   sendResponse({}); // Send nothing..
+
+ if (request.action == "getDocument") {
+
+
+   // GS Shop 물품 가격 선택 로직
+  //  console.log("document strong : ", $(".price_big").find("strong")[0].innerText );
+  //  var chosenPrice = $(".price_big").find("strong")[0].innerText;
+  //  sendResponse({price: chosenPrice});
+
+   // 핑크퐁 북스토어 가격 선택 로직
+   var chosenPrice = $(".price").find("strong")[0].innerText;
+   sendResponse({price: chosenPrice});
+
+   // 사용자가 직접 가격 선택 로직
+  //  $(document).click(function (e) {
+  //    console.log("clicked tag : ", e.target);
+  //    sendResponse({dom: e.target});
+  //  });
+
+  } else if (request.action == "getTabId") {
+    console.log("sender is : ",sender);
+  }
+
 });

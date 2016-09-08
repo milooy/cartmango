@@ -3,6 +3,16 @@
 // found in the LICENSE file.
 
 
+// chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
+// {
+//     if(request.action == "getTabId") {
+//         chrome.tabs.getSelected(null, function(tabs) {
+//             chrome.tabs.sendRequest(tabs.id, { action: "response" });
+//         });
+//     }
+// });
+
+
 //chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
 //  // Use the token.
 //  console.log(token);
