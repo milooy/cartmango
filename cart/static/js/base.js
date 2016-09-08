@@ -5,6 +5,7 @@ String.prototype.getValueByKey = function(k){
 };
 
 $('.button-collapse').sideNav();
+$('.parallax').parallax();
 
 /*-- 헤더가 보일 떈 nav를 투명하게 한다 --*/
 $(window).scroll(function() {
