@@ -2,6 +2,7 @@ function onWindowLoad() {
 
   var productList = ["productName", "productImage", "productUrl"];
 
+  // 상품 리스트 표시
   chrome.storage.sync.get(null, function(data) {
     console.log("data list : ", data);
 
