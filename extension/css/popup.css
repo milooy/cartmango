@@ -1,0 +1,60 @@
+h1 {
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+img.icon {
+    width: 23px;
+    vertical-align: bottom;
+}
+
+
+#product_name {
+    word-break: break-word;
+    font-weight: bold;
+    margin-top: 9px;
+    font-size: 1.6rem;
+}
+#product_price {
+    display: inline-block;
+    color: #3FC1C9;
+    font-weight: bolder;
+}
+
+.mall-container {
+    display: inline-block;
+    float: right;
+    margin-top: -6px;
+}
+#product_site {
+    display: inline-block;
+    margin: 3px 0;
+    color: #ABABAB;
+}
+
+.product_site_img {
+    display: inline-block;
+    height: 1.2rem;
+    width: 1.2rem;
+    vertical-align: sub;
+}
+
+.btn-list {
+    background: #d7d7d7;
+    font-weight: 300;
+    color: white;
+    border-radius: 2px;
+    margin-top: 17px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+.btn-list:focus {
+    background: #d7d7d7;
+    color: white;
+    outline: none;
+}
+
+.btn-list:hover {
+    background: #bbbbbb;
+    color: white;
+}

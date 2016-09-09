@@ -16,6 +16,7 @@
       }
     </style>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/popup.css" rel="stylesheet">
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
       - Policy documentation[1] for details and explanation.
@@ -28,16 +29,19 @@
     <script src="js/content_script.js"></script>
   </head>
   <body>
-    <h4>찜한 상품</h4>
+    <h1>
+        <img class="icon" src="img/icon-tilted.png" alt="Wishcart Icon">
+        위시카트에 담겼습니다
+    </h1>
     <img id='product_image' src="" alt="Product Image" style="width:200px; height:200px;">
-    <h4>상품명</h4>
-    <div id='product_name'>Injecting Product Name....</div>
-    <h4>상품가격</h4>
-    <div id='product_price'>Injecting Product Price....</div>
-    <h4>사이트</h4>
-    <div id='product_site'>Injecting Product Site....</div>
-    <div align="center" style="padding: 15px 15px;">
-      <button type="button" class="btn btn-success" id="go_to_homepage">통합 홈페이지로 가기</button>
+    <div id='product_name'>상품 이름 불러오는 중</div>
+    <div id='product_price'>가격 불러오는 중</div>
+    <div class="mall-container">
+        <img class="product_site_img" src="img/gs_shop_logo.png" alt="Mall Icon">
+        <div id='product_site'>사이트 이름 불러오는 중</div>
+    </div>
+    <div align="center">
+      <button type="button" class="btn btn-list" id="go_to_homepage">위시카트 목록으로</button>
     </div>
     <!-- <button type="button" class="btn btn-success" id="price_inspector">가격 선택</button>
     <button>서버로 보내기</button> -->
