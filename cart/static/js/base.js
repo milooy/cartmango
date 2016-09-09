@@ -1,5 +1,11 @@
 /*-- materializecss side bar --*/
+String.prototype.getValueByKey = function(k){
+    var p = new RegExp('\\b'+k+'\\b','gi');
+    return this.search(p) != -1 ? decodeURIComponent(this.substr(this.search(p)+k.length+1).substr(0,this.substr(this.search(p)+k.length+1).search(/(&|;|$)/))) : "";
+};
+
 $('.button-collapse').sideNav();
+$('.parallax').parallax();
 
 /*-- 헤더가 보일 떈 nav를 투명하게 한다 --*/
 $(window).scroll(function() {

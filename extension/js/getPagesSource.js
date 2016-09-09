@@ -27,10 +27,9 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 
  if (request.action == "getDocument") {
 
-
    // GS Shop 물품 가격 선택 로직
   //  console.log("document strong : ", $(".price_big").find("strong")[0].innerText );
-   var chosenPrice = $(".price_big").find("strong")[0].innerText;
+   var chosenPrice = $(".price_big").find("strong")[0].innerText + "";
    sendResponse({price: chosenPrice});
 
    // 핑크퐁 북스토어 가격 선택 로직

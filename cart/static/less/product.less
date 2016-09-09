@@ -1,4 +1,15 @@
 @import (once) "var";
+
+.row.product-order {
+  .input-field:first-of-type {
+    padding-left: 0;
+  }
+}
+.product-list .row .col {
+  @media @l-l {
+    padding: 0 1.35rem;
+  }
+}
 .price {
   color: @secondary;
   font-weight: bolder;
@@ -36,6 +47,13 @@ div.product-card {
     overflow: hidden;
   }
 
+}
+
+/*-- 상품 정렬 --*/
+div.product-order {
+  .input-field {
+    margin: 0;
+  }
 }
 
 .dropdown-button {

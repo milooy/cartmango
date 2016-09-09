@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
   chrome.tabs.getSelected(null, function(tab) {
     chrome.tabs.sendRequest(tab.id, {action: "getDocument"}, function(response) {
       console.log("상품 가격 : ", response.price);
-      product_price.innerText = response.price;
+      product_price.innerText = response.price + '원';
       chrome.storage.local.set({"price" : response.price});
     });
   });
