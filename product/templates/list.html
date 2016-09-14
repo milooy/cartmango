@@ -43,13 +43,13 @@
                     {% if personal_product.is_favorite %}
                         <i class="favorite material-icons">&#xE87D;</i>
                     {% endif %}
-                    <a href="{{ personal_product.product.url }}">
-                        <img class="product-img" src="{{ personal_product.product.thumbnail.url}}"/>
+                    <a target="_blank" href="{{ personal_product.product.url }}">
+                        <img class="product-img" src="{{ personal_product.product.thumbnail_url}}"/>
                         <div class="info">
                             <h3>{{ personal_product.product.name|truncatechars:33 }}</h3>
                             <div class="price">{{ personal_product.product.price|intcomma }}원</div>
                             <div class="mall-name">
-                                <img src="{{ personal_product.product.mall.thumbnail.url }}"/>
+                                <img src="{{ personal_product.product.mall.thumbnail_url }}"/>
                                 {{ personal_product.product.mall.name }}
                             </div>
                         </div>

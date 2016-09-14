@@ -1,3 +1,4 @@
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.utils import timezone
 from django.conf import settings
 from django.db import models
@@ -18,7 +19,7 @@ class Product(TimeStampedModel):
     name = models.CharField(u'상품명', max_length=200)
     url = models.CharField(u'링크', max_length=300)
     price = models.PositiveIntegerField(u'가격', default=0, null=True, blank=True)
-    thumbnail_url = models.CharField(u'썸네일 url', max_length=1000, null=True, blank=True)
+    thumbnail_src = models.CharField(u'썸네일 소스', max_length=1000, null=True, blank=True)
     thumbnail = ResizedImageField(
         u'썸네일',
         size=[900, 900], quality=80,
@@ -27,8 +28,16 @@ class Product(TimeStampedModel):
         upload_to='product/%Y/%m/%d',
     )
 
+    def thumbnail_url(self):
+        if self.thumbnail and hasattr(self.thumbnail, 'url'):
+            return self.thumbnail.url
+        elif self.thumbnail_src:
+            return self.thumbnail_src
+        else:
+            return static('img/no-product-image.png')
+
     def __str__(self):
-        return self.name + self.mall.name
+        return '{} - {}'.format(self.name, self.mall.name)
 
 
 class PersonalProduct(TimeStampedModel):
@@ -58,9 +67,16 @@ class Mall(models.Model):
         u'썸네일',
         size=[900, 900], quality=80,
         null=True, blank=True,
+        crop=['middle', 'center'],
         upload_to='mall/%Y/%m/%d',
     )
 
     def __str__(self):
         return self.name
+
+    def thumbnail_url(self):
+        if self.thumbnail and hasattr(self.thumbnail, 'url'):
+            return self.thumbnail.url
+        else:
+            return static('img/no-product-image.png')
 

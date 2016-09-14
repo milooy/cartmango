@@ -132,7 +132,7 @@
                         <li><a href="/list">장바구니</a></li>
                         {% if user.is_authenticated %}
                             <li class="user-info"><a class="dropdown-button" href="#!" data-activates="account-dropdown">
-                                {{ user.nickname }}<img src="{{ user.avatar.url }}"/>
+                                {{ user.nickname }}<img src="{{ user.avatar_url }}"/>
                                 <i class="material-icons right">arrow_drop_down</i></a></li>
                         {% else %}
                             <li><a href="/signup">회원가입</a></li>
@@ -143,7 +143,7 @@
                         <li><a href="/list">장바구니</a></li>
                         <li><a href="/list/star">즐겨찾기</a></li>
                         {% if user.is_authenticated %}
-                            <li class="user-info"><a href="#"><img src="{{ user.avatar.url }}"/>{{ user.nickname }}</a></li>
+                            <li class="user-info"><a href="#"><img src="{{ user.avatar_url }}"/>{{ user.nickname }}</a></li>
                         {% else %}
                             <li><a href="/signup">회원가입</a></li>
                             <li><a href="/login">로그인</a></li>
