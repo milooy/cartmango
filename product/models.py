@@ -61,7 +61,7 @@ class PersonalProduct(TimeStampedModel):
         return self.product.name + self.user.email
 
 
-class Mall(models.Model):
+class Mall(TimeStampedModel):
     name = models.CharField(u'쇼핑몰 이름', max_length=200)
     thumbnail = ResizedImageField(
         u'썸네일',
@@ -79,4 +79,14 @@ class Mall(models.Model):
             return self.thumbnail.url
         else:
             return static('img/no-product-image.png')
+
+
+class List(TimeStampedModel):
+    name = models.CharField(u'리스트 이름', max_length=200)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=u'사용자',
+                             related_name='my_list')
+    product = models.ManyToManyField(PersonalProduct, verbose_name=u'리스트 제품', blank=True)
+
+    def __str__(self):
+        return self.name
 

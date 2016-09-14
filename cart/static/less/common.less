@@ -3,12 +3,21 @@
 
 @header-height: 200px;
 @nav-height: 60px;
+@side-nav-size: 240px;
 
 //*-- 공용 *--//
 body {
   font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Malgun Gothic", "돋움", Dotum, sans-serif;
   color: @font-primary;
   font-weight: 300;
+}
+main, footer {
+  padding-left: @side-nav-size;
+}
+@media only screen and (max-width : 992px) {
+  main, footer {
+    padding-left: 0;
+  }
 }
 h2 {
   font-size: 2.5rem;
@@ -101,6 +110,23 @@ nav.nav-main {
     a, ul a {
       color : white;
     }
+  }
+}
+.side-nav {
+  width: @side-nav-size;
+  z-index: 50;
+  padding-top: @nav-height;
+  @media @l-s, @l-m {
+    z-index: 999;
+    padding-top: 0;
+  }
+}
+#sidenav-overlay {
+  z-index: 49;
+}
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 85%;
   }
 }
 
