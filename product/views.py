@@ -47,7 +47,8 @@ class ProductListView(ListView, FilterMixin):
     filter_class = ProductFilter
 
     def get_queryset(self, *args, **kwargs):
-        qs = super(ProductListView, self).get_queryset(*args, **kwargs)
+        qs = super(ProductListView, self).get_queryset(*args, **kwargs)\
+            .filter(user=self.request.user)
         return self.get_filter_class()(self.request.GET, queryset=qs)
 
     def paginate_queryset(self, queryset, page_size):
