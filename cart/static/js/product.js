@@ -34,16 +34,20 @@ function filteredUrl(filter_name, val) {
     return url;
 }
 
+function initSelectBox(name_list) {
+    name_list.forEach(function(name) {
+        $("select.select-"+name).change(function() {
+            window.location = filteredUrl(name, this.value);
+        });
+
+        var val = location.search.getValueByKey(name);
+        if(val) {
+            $(".select-"+ name +" option[value="+ val +"]").attr("selected", "selected");
+        }
+    });
+}
 
 $(document).ready(function () {
     materializeInit();
-    var order_query = location.search.getValueByKey('order');
-    $("select.select-order").change(function() {
-        window.location = filteredUrl('order', this.value);
-    });
-    $("select.select-list").change(function() {
-        window.location = filteredUrl('list', this.value);
-    });
-    $(".select-order option[value="+location.search.getValueByKey('order')+"]").attr("selected", "selected");
-    $(".select-list option[value="+location.search.getValueByKey('list')+"]").attr("selected", "selected");
+    initSelectBox(['order', 'list']);
 });
