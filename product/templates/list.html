@@ -38,7 +38,7 @@
         {% endif %}
 
         {% for personal_product in object_list %}
-            <div class="col s6 m4 l4">
+            <div class="col s6 m4 l3">
                 <div class="product-card">
                     {% if personal_product.is_favorite %}
                         <i class="favorite material-icons">&#xE87D;</i>
@@ -46,8 +46,10 @@
                     <a target="_blank" href="{{ personal_product.product.url }}">
                         <img class="product-img" src="{{ personal_product.product.thumbnail_url}}"/>
                         <div class="info">
-                            <h3>{{ personal_product.product.name|truncatechars:33 }}</h3>
-                            <div class="price">{{ personal_product.product.price|intcomma }}원</div>
+                            <div class="inner">
+                                <h3>{{ personal_product.product.name|truncatechars:33 }}</h3>
+                                <div class="price">{{ personal_product.product.price|intcomma }}원</div>
+                            </div>
                             <div class="mall-name">
                                 <img src="{{ personal_product.product.mall.thumbnail_url }}"/>
                                 {{ personal_product.product.mall.name }}
@@ -57,11 +59,11 @@
                     <a class='dropdown-button right' href='#' data-activates='dropdown{{ personal_product.id }}'>
                         <i class="material-icons">&#xE5CF;</i>
                     </a>
-                    <div class="tag-container">
-                        {% for tag in personal_product.tags.all %}
-                            <div class="tag-box"><a href="?query={{ tag }}"># {{ tag }}</a></div>
-                        {% endfor %}
-                    </div>
+                </div>
+                <div class="tag-container">
+                    {% for tag in personal_product.tags.all %}
+                        <div class="tag-box"><a href="?query={{ tag }}"># {{ tag }}</a></div>
+                    {% endfor %}
                 </div>
             </div>
             <ul id='dropdown{{ personal_product.id }}' class='dropdown-content'>

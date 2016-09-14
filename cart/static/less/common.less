@@ -58,6 +58,12 @@ button.big {
     transition: @background-transition;
   }
 }
+.container {
+  width: 93%;
+  @media @l-m, @l-l {
+    width: 90%;
+  }
+}
 
 //*-- 네비게이션 *--//
 .navbar-fixed {
@@ -137,11 +143,6 @@ nav.nav-main {
 }
 #sidenav-overlay {
   z-index: 49;
-}
-@media only screen and (min-width: 993px) {
-  .container {
-    width: 90%;
-  }
 }
 
 //*-- 네비게이션 검색 *--//
