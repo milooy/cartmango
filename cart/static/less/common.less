@@ -3,11 +3,12 @@
 
 @header-height: 200px;
 @nav-height: 60px;
-@side-nav-size: 240px;
+@side-nav-size: 140px;
 
 //*-- 공용 *--//
 body {
   font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Malgun Gothic", "돋움", Dotum, sans-serif;
+  background: @background-color;
   color: @font-primary;
   font-weight: 300;
 }
@@ -59,6 +60,9 @@ button.big {
 }
 
 //*-- 네비게이션 *--//
+.navbar-fixed {
+  z-index: 5;
+}
 nav.nav-main {
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: none;
@@ -115,10 +119,20 @@ nav.nav-main {
 .side-nav {
   width: @side-nav-size;
   z-index: 50;
-  padding-top: @nav-height;
+  background: transparent;
+  box-shadow: none;
+  padding: 119px 0px 0px 40px;
   @media @l-s, @l-m {
     z-index: 999;
     padding-top: 0;
+    width: 200px;
+    background: white;
+  }
+  li.active {
+    background: transparent !important;
+  }
+  .collapsible-body {
+    background: transparent !important;
   }
 }
 #sidenav-overlay {
@@ -126,7 +140,7 @@ nav.nav-main {
 }
 @media only screen and (min-width: 993px) {
   .container {
-    width: 85%;
+    width: 90%;
   }
 }
 
@@ -220,10 +234,20 @@ section.section {
   border-radius: 50%;
   margin-right: 5px;
 }
-
+.divider {
+  width: 33px;
+  margin: 0 16px !important;
+}
 //*-- 푸터 *--//
 footer.page-footer {
-  background: #4a4a4a;
+  background: transparent;
+  color: @font-primary;
+  .footer-copyright {
+    a {
+      color: @font-primary;
+      margin-right: 17px;
+    }
+  }
 }
 
 //*-- Materializecss override *--//
