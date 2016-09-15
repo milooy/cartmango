@@ -2,6 +2,7 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.utils import timezone
 from django.conf import settings
 from django.db import models
+from django.utils.text import slugify
 from django_resized import ResizedImageField
 from taggit.managers import TaggableManager
 
@@ -59,6 +60,11 @@ class PersonalProduct(TimeStampedModel):
 
     def __str__(self):
         return self.product.name + self.user.email
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.user)
+        super(PersonalProduct, self).save(*args, **kwargs)
 
 
 class Mall(TimeStampedModel):

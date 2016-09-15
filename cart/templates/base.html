@@ -119,7 +119,7 @@
                             </li>
                             <li class="search-box">
                                 <div class="search-container">
-                                    <form action="{% url 'product_list' %}" method="get">
+                                    <form action="{% url 'product_list' slug=user.email %}" method="get">
                                         <input name="query" type="text" placeholder="검색"/>
                                         <input class='submit hide' type="submit"/>
                                     </form>
@@ -143,7 +143,7 @@
                         <a href="#" class="search-mobile right hide-on-large-only"><i class="material-icons">&#xE8B6;</i></a>
                         <div class="search-box-mobile hide-on-large-only">
                             <div class="search-container">
-                                <form action="{% url 'product_list' %}" method="get">
+                                <form action="{% url 'product_list' slug=user.email %}" method="get">
                                     <input name="query" type="text" placeholder="제품 검색"/>
                                     <i class="material-icons">&#xE5CD;</i>
                                     <input class='submit hide' type="submit"/>
@@ -155,7 +155,7 @@
                 </nav>
             </div>
             <ul id="slide-out" class="side-nav fixed">
-                <li><a href="#!">전체보기</a></li>
+                <li><a href="{% url 'product_list' slug=user.email %}">전체보기</a></li>
                 <li><div class="divider"></div></li>
                 <li><a href="#!">즐겨찾기</a></li>
                 <li><a href="#!">보관함</a></li>
@@ -165,10 +165,7 @@
                             <a class="collapsible-header active">내 리스트</a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li><a href="#!">First</a></li>
-                                    <li><a href="#!">Second</a></li>
-                                    <li><a href="#!">Third</a></li>
-                                    <li><a href="#!">Fourth</a></li>
+                                    <li><a href="#!">+ NEW</a></li>
                                 </ul>
                             </div>
                         </li>

@@ -130,7 +130,7 @@ nav.nav-main {
   padding: 119px 0px 0px 40px;
   @media @l-s, @l-m {
     z-index: 999;
-    padding-top: 0;
+    padding: 5px;
     width: 200px;
     background: white;
   }
@@ -251,4 +251,23 @@ footer.page-footer {
   }
 }
 
-//*-- Materializecss override *--//
+/* 로딩 애니메이션 */
+.loader {
+  text-align: center;
+  display: none;
+}
+.line {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background-color: @primary-light;
+}
+.loader .line:nth-last-child(1) {animation: loading .5s .1s linear infinite;}
+.loader .line:nth-last-child(2) {animation: loading .5s .2s linear infinite;}
+.loader .line:nth-last-child(3) {animation: loading .5s .3s linear infinite;}
+
+@keyframes loading  {
+  0%, 100% {transform: translate(0,0);}
+  50% {transform: translate(0,15px);}
+}
