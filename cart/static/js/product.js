@@ -1,3 +1,5 @@
+location_search = location.search;
+
 function materializeInit() {
     $('.modal-trigger').leanModal({
             dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -57,9 +59,7 @@ function initSelectBox(name_list) {
 
 var List = {
     init: function() {
-        var query = location.search.split('=')[1];
-        List.query = query? '?query='+ query : '';
-        this.get(location.pathname+'items/'+List.query);
+        this.get(location.pathname+'items/'+location_search);
         this.infiniteScroll()
     },
     get: function(url) {
@@ -69,8 +69,8 @@ var List = {
         });
     },
     getByScroll: function(next_page) {
-        List.query = List.query.replace('?', '&');
-        $.get(location.pathname+'items/?page='+next_page + List.query, function(data) {
+        var parsedQuery = $.query.parseNew(location_search, "page="+next_page).toString();
+        $.get(location.pathname+'items/'+ parsedQuery, function(data) {
             $('.loader').remove();
             $('section.product_list_section').append(data);
             materializeInit();
