@@ -5,28 +5,36 @@
     padding-left: 0;
   }
 }
-.product-list .row .col {
-  @media @l-l {
-    padding: 0 1.35rem;
+//.product-list.row .col {
+.row .col {
+  @media @l-s {
+    padding: 0 0.35rem;
   }
 }
 .price {
   color: @secondary;
+  margin-top: 3px;
   font-weight: bolder;
 }
 .mall-name {
-  img {
-    height: 1.2rem;
-    width: 1.2rem;
-    vertical-align: sub;
-  }
+  font-size: 13px;
   margin: 3px 0;
   color: @mid-gray;
+  img {
+    height: 13px;
+    width: 13px;
+    vertical-align: sub;
+  }
 }
 
 div.product-card {
-  margin-bottom: 0.85rem;
+  margin: 10px 0 8px;
   position: relative;
+  background: white;
+  border-radius: 5px;
+  -webkit-box-shadow: 5px 6px 50px 4px rgba(0,0,0,0.02);
+  -moz-box-shadow: 5px 6px 50px 4px rgba(0,0,0,0.02);
+  box-shadow: 5px 6px 50px 4px rgba(0,0,0,0.02);
   .favorite {
     position: absolute;
     right: 5px;
@@ -35,9 +43,14 @@ div.product-card {
   }
   .product-img {
     width: 100%;
+    border-radius: 5px 5px 0 0;
   }
   .info {
-    height: 5.6rem;
+    //height: 6.3rem;
+    .inner {
+      height: 3.7rem;
+    }
+    padding: 8px;
   }
   h3 {
     font-size: 1rem;
@@ -51,6 +64,9 @@ div.product-card {
 
 /*-- 상품 정렬 --*/
 div.product-order {
+  @media @l-s {
+    margin-bottom: 0;
+  }
   .input-field {
     margin: 0;
   }

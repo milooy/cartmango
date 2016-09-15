@@ -1,0 +1,82 @@
+{% load humanize %}{% load staticfiles %}
+{% for personal_product in object_list %}
+    <div class="col s6 m4 l3">
+        <div class="product-card">
+            {% if personal_product.is_favorite %}
+                <i class="favorite material-icons">&#xE87D;</i>
+            {% endif %}
+            <a target="_blank" href="{{ personal_product.product.url }}">
+                <img class="product-img" src="{{ personal_product.product.thumbnail_url}}"/>
+                <div class="info">
+                    <div class="inner">
+                        <h3>{{ personal_product.product.name|truncatechars:33 }}</h3>
+                        <div class="price">{{ personal_product.product.price|intcomma }}원</div>
+                    </div>
+                    <div class="mall-name">
+                        <img src="{{ personal_product.product.mall.thumbnail_url }}"/>
+                        {{ personal_product.product.mall.name }}
+                    </div>
+                </div>
+            </a>
+            <a class='dropdown-button right' href='#' data-activates='dropdown{{ personal_product.id }}'>
+                <i class="material-icons">&#xE5CF;</i>
+            </a>
+        </div>
+        <div class="tag-container">
+            {% for tag in personal_product.tags.all %}
+                <div class="tag-box"><a href="?query={{ tag }}"># {{ tag }}</a></div>
+            {% endfor %}
+        </div>
+    </div>
+    <ul id='dropdown{{ personal_product.id }}' class='dropdown-content'>
+        <li><a class="modal-trigger" href="#modal{{ personal_product.id }}"><i class="material-icons">&#xE263;</i>가격비교</a></li>
+        <li><a href="#!"><i class="material-icons">&#xE87D;</i>즐겨찾기</a></li>
+        <li class="divider"></li>
+        <li><a href="#!"><i class="material-icons">&#xE876;</i>보관</a></li>
+        <li><a href="#!"><i class="material-icons">&#xE150;</i>수정</a></li>
+        <li><a href="#!"><i class="material-icons">&#xE872;</i>삭제</a></li>
+    </ul>
+    <div id="modal{{ personal_product.id }}" class="price-modal modal bottom-sheet">
+        <div class="modal-content">
+            <h4>가격 비교</h4>
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <div class="inner">
+                        <img class="product-img" src="{% static 'img/test/toy-1.png' %}"/>
+                        <a href="http://toy.interpark.com/product/MallDisplay.do?_method=Detail&sc.prdNo=4192559398#"><span class="title">[비비하우스][젤리캣] 국민애착인형 베이지 버니-M</span></a>
+                        <div class="price">46,000원</div>
+                        <p class="mall-name">
+                            <img class="mall-img" src="/media/mall/2016/09/05/interpark.png">인터파크
+                        </p>
+                    </div>
+                    <a href="#!" onclick="Materialize.toast('장바구니에 담겼습니다', 3000)" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
+                </li>
+                <li class="collection-item avatar">
+                    <div class="inner">
+                        <img class="product-img" src="{% static 'img/test/toy-2.png' %}"/>
+                        <a href="http://toy.interpark.com/product/MallDisplay.do?_method=Detail&sc.prdNo=4192559398#"><span class="title">국민애착인형블라썸 크림 버니-L</span></a>
+                        <div class="price">49,500원</div>
+                        <p class="mall-name">
+                            <img class="mall-img" src="/media/mall/2016/09/07/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2016-09-07_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.59.43.png">Auction
+                        </p>
+                    </div>
+                    <a href="#!" onclick="Materialize.toast('장바구니에 담겼습니다', 3000)" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
+                </li>
+                <li class="collection-item avatar">
+                    <div class="inner">
+                        <img class="product-img" src="{% static 'img/test/toy-3.png' %}"/>
+                        <a href="http://toy.interpark.com/product/MallDisplay.do?_method=Detail&sc.prdNo=4192559398#"><span class="title">[젤리캣] 블라썸 튤립 핑크 버니-M</span></a>
+                        <div class="price">38,500원</div>
+                        <p class="mall-name">
+                            <img class="mall-img" src="/media/mall/2016/09/05/gs_shop_logo.png">GS SHOP
+                        </p>
+                    </div>
+                    <a href="#!" onclick="Materialize.toast('장바구니에 담겼습니다', 3000)" class="secondary-content"><i class="material-icons">&#xE854;</i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% empty %}
+    리스트가 비었습니다
+{% endfor %}
+{% include '_loader.html' %}

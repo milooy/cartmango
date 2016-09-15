@@ -1,9 +1,11 @@
-/*-- materializecss side bar --*/
-String.prototype.getValueByKey = function(k){
-    var p = new RegExp('\\b'+k+'\\b','gi');
-    return this.search(p) != -1 ? decodeURIComponent(this.substr(this.search(p)+k.length+1).substr(0,this.substr(this.search(p)+k.length+1).search(/(&|;|$)/))) : "";
-};
+if(!String.prototype.getValueByKey) {
+    String.prototype.getValueByKey = function(k){
+        var p = new RegExp('\\b'+k+'\\b','gi');
+        return this.search(p) != -1 ? decodeURIComponent(this.substr(this.search(p)+k.length+1).substr(0,this.substr(this.search(p)+k.length+1).search(/(&|;|$)/))) : "";
+    };
+}
 
+/*-- Init MaterializeCSS --*/
 $('.button-collapse').sideNav();
 $('.parallax').parallax();
 

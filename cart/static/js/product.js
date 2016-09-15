@@ -1,4 +1,4 @@
-
+location_search = location.search;
 
 function materializeInit() {
     $('.modal-trigger').leanModal({
@@ -13,37 +13,68 @@ function materializeInit() {
         }
     );
     $('select').material_select();
-}
-
-function filteredUrl(filter_name, val) {
-    var url;
-    var href = location.href;
-    var pathname = location.pathname;
-    var search = location.search;
-    var filter_value = search.getValueByKey(filter_name);
-    if(filter_value) {
-        var filter_val = location.search.getValueByKey(filter_name);
-        url = pathname + search.replace(filter_val, val);
-    } else {
-        if(search) {
-            url = href + '&'+filter_name+'=' + val;
-        } else {
-            url = href + '?'+filter_name+'=' + val;
+    $('.dropdown-button').dropdown({
+            inDuration: 300,
+            outDuration: 225,
+            constrain_width: false, // Does not change width of dropdown to that of the activator
+            hover: true, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: false, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
         }
-    }
-    return url;
+    );
 }
 
+function initSelectBox(name_list) {
+    name_list.forEach(function(name) {
+        $("select.select-"+name).change(function() {
+            location_search = $.query.parseNew(location_search, name+"="+this.value).REMOVE('page').toString();
+            List.init(location.pathname+'items/'+location_search);
+        });
+    });
+}
+
+var List = {
+    init: function(url) {
+        console.log("GET LIST: ", url);
+        this.get(url);
+        this.infiniteScroll()
+    },
+    get: function(url) {
+        $.get(url, function(data) {
+            $('section.product_list_section').html(data);
+            materializeInit();
+        });
+    },
+    getByScroll: function(next_page) {
+        var parsedQuery = $.query.parseNew(location_search, "page="+next_page).toString();
+        console.log("GET NEXT LIST: ", location.pathname+'items/'+ parsedQuery);
+        $.get(location.pathname+'items/'+ parsedQuery, function(data) {
+            $('.loader').remove();
+            $('section.product_list_section').append(data);
+            materializeInit();
+        });
+    },
+    infiniteScroll: function() {
+        $(window).scroll(function () {
+            var $loader = $('.loader');
+            var $next_page_container = $('.next-page-container');
+            var next_page = $next_page_container.data('next');
+            var footer = $('footer.page-footer').position().top;
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop + $(window).height() >= footer - 30) {
+                $loader.css('display', 'block');
+                if(next_page) {
+                    $next_page_container.remove();
+                    List.getByScroll(next_page);
+                }
+            }
+        });
+    }
+};
 
 $(document).ready(function () {
+    List.init(location.pathname+'items/'+location_search);
     materializeInit();
-    var order_query = location.search.getValueByKey('order');
-    $("select.select-order").change(function() {
-        window.location = filteredUrl('order', this.value);
-    });
-    $("select.select-list").change(function() {
-        window.location = filteredUrl('list', this.value);
-    });
-    $(".select-order option[value="+location.search.getValueByKey('order')+"]").attr("selected", "selected");
-    $(".select-list option[value="+location.search.getValueByKey('list')+"]").attr("selected", "selected");
+    initSelectBox(['order', 'list']);
 });

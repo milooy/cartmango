@@ -3,12 +3,22 @@
 
 @header-height: 200px;
 @nav-height: 60px;
+@side-nav-size: 140px;
 
 //*-- 공용 *--//
 body {
   font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Malgun Gothic", "돋움", Dotum, sans-serif;
+  background: @background-color;
   color: @font-primary;
   font-weight: 300;
+}
+main, footer {
+  padding-left: @side-nav-size;
+}
+@media only screen and (max-width : 992px) {
+  main, footer {
+    padding-left: 0;
+  }
 }
 h2 {
   font-size: 2.5rem;
@@ -48,8 +58,17 @@ button.big {
     transition: @background-transition;
   }
 }
+.container {
+  width: 93%;
+  @media @l-m, @l-l {
+    width: 90%;
+  }
+}
 
 //*-- 네비게이션 *--//
+.navbar-fixed {
+  z-index: 5;
+}
 nav.nav-main {
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: none;
@@ -102,6 +121,33 @@ nav.nav-main {
       color : white;
     }
   }
+}
+.side-nav {
+  width: @side-nav-size;
+  z-index: 50;
+  background: transparent;
+  box-shadow: none;
+  padding: 119px 0px 0px 40px;
+  &.home {
+    @media @l-l {
+      display: none;
+    }
+  }
+  @media @l-s, @l-m {
+    z-index: 999;
+    padding: 5px;
+    width: 200px;
+    background: white;
+  }
+  li.active {
+    background: transparent !important;
+  }
+  .collapsible-body {
+    background: transparent !important;
+  }
+}
+#sidenav-overlay {
+  z-index: 49;
 }
 
 //*-- 네비게이션 검색 *--//
@@ -194,10 +240,39 @@ section.section {
   border-radius: 50%;
   margin-right: 5px;
 }
-
+.divider {
+  width: 33px;
+  margin: 0 16px !important;
+}
 //*-- 푸터 *--//
 footer.page-footer {
-  background: #4a4a4a;
+  background: transparent;
+  color: @font-primary;
+  .footer-copyright {
+    a {
+      color: @font-primary;
+      margin-right: 17px;
+    }
+  }
 }
 
-//*-- Materializecss override *--//
+/* 로딩 애니메이션 */
+.loader {
+  text-align: center;
+  display: none;
+}
+.line {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background-color: @primary-light;
+}
+.loader .line:nth-last-child(1) {animation: loading .5s .1s linear infinite;}
+.loader .line:nth-last-child(2) {animation: loading .5s .2s linear infinite;}
+.loader .line:nth-last-child(3) {animation: loading .5s .3s linear infinite;}
+
+@keyframes loading  {
+  0%, 100% {transform: translate(0,0);}
+  50% {transform: translate(0,15px);}
+}

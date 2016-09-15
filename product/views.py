@@ -1,8 +1,12 @@
 from django.core.paginator import EmptyPage
 from django.db.models import Q
 from django.http import Http404
+from django.conf import settings
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
 import django_filters
+
+from accounts.models import MyUser
 from cart.mixins import FilterMixin
 
 from .models import Product, PersonalProduct
@@ -42,12 +46,15 @@ class ProductFilter(django_filters.FilterSet):
 
 class ProductListView(ListView, FilterMixin):
     model = PersonalProduct
-    template_name = 'list.html'
-    paginate_by = 10
+    template_name = '_product_list.html'
+    # paginate_by = 20
+    paginate_by = 3
     filter_class = ProductFilter
 
     def get_queryset(self, *args, **kwargs):
-        qs = super(ProductListView, self).get_queryset(*args, **kwargs)
+        if self.kwargs.get('slug'):
+            qs = super(ProductListView, self).get_queryset(*args, **kwargs)\
+                .filter(user__email=self.kwargs['slug'])
         return self.get_filter_class()(self.request.GET, queryset=qs)
 
     def paginate_queryset(self, queryset, page_size):
@@ -55,3 +62,8 @@ class ProductListView(ListView, FilterMixin):
             return super(ProductListView, self).paginate_queryset(queryset, page_size)
         except EmptyPage:
             raise Http404
+
+
+def personal_product_list(request, slug):
+    user = get_object_or_404(MyUser, email=slug)
+    return render(request, 'list.html', {'user':user})

@@ -1,20 +1,19 @@
-# coding: utf-8
 from django.db import models
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser,
     PermissionsMixin)
+from django_resized import ResizedImageField
 
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, nickname, password=None):
         if not email:
             raise ValueError('Users must have an email address')
-
         user = self.model(
             email=MyUserManager.normalize_email(email),
             nickname=nickname,
         )
-
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -22,8 +21,7 @@ class MyUserManager(BaseUserManager):
     def create_superuser(self, email, nickname, password):
         u = self.create_user(email=email,
                              nickname=nickname,
-                             password=password,
-                             )
+                             password=password,)
         u.is_admin = True
         u.save(using=self._db)
         return u
@@ -39,21 +37,27 @@ class MyUser(AbstractBaseUser,  PermissionsMixin):
         u'닉네임',
         max_length=10,
         blank=False,
-        # unique=True,
-        default='')
-    avatar = models.ImageField(
-        null=True,
-        blank=True,
-        upload_to='image/avatar/',
+        default=''
+    )
+    avatar = ResizedImageField(
+        u'아바타',
+        size=[500, 500], quality=80,
+        crop=['middle', 'center'],
+        null=True, blank=True,
+        upload_to='image/avatar/%Y/%m/%d',
     )
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-
-    objects = MyUserManager()
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['nickname']
+    objects = MyUserManager()
+
+    def avatar_url(self):
+        if self.avatar and hasattr(self.avatar, 'url'):
+            return self.avatar.url
+        else:
+            return static('img/default-avatar.jpg')
 
     def get_full_name(self):
         # The user is identified by their email address

@@ -61,7 +61,7 @@
 
     {% block base-css %}
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
     {% block page-css %}{% endblock %}
@@ -79,7 +79,6 @@
             version    : 'v2.5'
         });
     };
-
     (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
@@ -99,96 +98,102 @@
 </script>
 {% block body %}
     {% block nav-main %}
-        <ul id="account-dropdown" class="dropdown-content">
-            <li><a href="#!">즐겨찾기</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">설정</a></li>
-            <li><a href="#!">도움말</a></li>
-            <li class="divider"></li>
-            <li><a href="/logout">로그아웃</a></li>
-        </ul>
-        <div class="navbar-fixed">
-            <nav class="nav-main nav-dark nav-transparent" role="navigation">
-                <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src="{% static 'img/logo.png' %}"/></a>
-                    <ul class="search-ul-large right hide-on-med-and-down">
-                        <li class="search">
-                            <a href="#" class="search-large">
-                                <i class="material-icons">&#xE8B6;</i>
-                            </a>
-                        </li>
-                        <li class="search-box">
+        <header>
+            <ul id="account-dropdown" class="dropdown-content">
+                <li><a href="#!">즐겨찾기</a></li>
+                <li class="divider"></li>
+                <li><a href="#!">설정</a></li>
+                <li><a href="#!">도움말</a></li>
+                <li class="divider"></li>
+                <li><a href="/logout">로그아웃</a></li>
+            </ul>
+            <div class="navbar-fixed">
+                <nav class="nav-main nav-dark nav-transparent" role="navigation">
+                    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src="{% static 'img/logo.png' %}"/></a>
+                        <ul class="search-ul-large right hide-on-med-and-down">
+                            <li class="search">
+                                <a href="#" class="search-large">
+                                    <i class="material-icons">&#xE8B6;</i>
+                                </a>
+                            </li>
+                            <li class="search-box">
+                                <div class="search-container">
+                                    <form action="{% url 'product_list' slug=user.email %}" method="get">
+                                        <input name="query" type="text" placeholder="검색"/>
+                                        <input class='submit hide' type="submit"/>
+                                    </form>
+                                </div>
+                            </li>
+                            <li class="close">
+                                <i class="material-icons">&#xE5CD;</i>
+                            </li>
+                        </ul>
+                        <ul id="nav-top" class="right account-large hide-on-med-and-down">
+                            {% if user.is_authenticated %}
+                                <li class="user-info"><a class="dropdown-button" href="#!" data-activates="account-dropdown">
+                                    {{ user.nickname }}<img src="{{ user.avatar_url }}"/>
+                                    <i class="material-icons right">arrow_drop_down</i></a></li>
+                            {% else %}
+                                <li><a href="/signup">회원가입</a></li>
+                                <li><a href="/login">로그인</a></li>
+                            {% endif %}
+                        </ul>
+                        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+                        <a href="#" class="search-mobile right hide-on-large-only"><i class="material-icons">&#xE8B6;</i></a>
+                        <div class="search-box-mobile hide-on-large-only">
                             <div class="search-container">
-                                <form action="{% url 'product_list' %}" method="get">
-                                    <input name="query" type="text" placeholder="검색"/>
+                                <form action="{% url 'product_list' slug=user.email %}" method="get">
+                                    <input name="query" type="text" placeholder="제품 검색"/>
+                                    <i class="material-icons">&#xE5CD;</i>
                                     <input class='submit hide' type="submit"/>
                                 </form>
                             </div>
-                        </li>
-                        <li class="close">
-                            <i class="material-icons">&#xE5CD;</i>
-                        </li>
-                    </ul>
-                    <ul id="nav-top" class="right account-large hide-on-med-and-down">
-                        <li><a href="/list">장바구니</a></li>
-                        {% if user.is_authenticated %}
-                            <li class="user-info"><a class="dropdown-button" href="#!" data-activates="account-dropdown">
-                                {{ user.nickname }}<img src="{{ user.avatar.url }}"/>
-                                <i class="material-icons right">arrow_drop_down</i></a></li>
-                        {% else %}
-                            <li><a href="/signup">회원가입</a></li>
-                            <li><a href="/login">로그인</a></li>
-                        {% endif %}
-                    </ul>
-                    <ul id="nav-mobile" class="side-nav">
-                        <li><a href="/list">장바구니</a></li>
-                        <li><a href="/list/star">즐겨찾기</a></li>
-                        {% if user.is_authenticated %}
-                            <li class="user-info"><a href="#"><img src="{{ user.avatar.url }}"/>{{ user.nickname }}</a></li>
-                        {% else %}
-                            <li><a href="/signup">회원가입</a></li>
-                            <li><a href="/login">로그인</a></li>
-                        {% endif %}
-                    </ul>
-                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <a href="#" class="search-mobile right hide-on-large-only"><i class="material-icons">&#xE8B6;</i></a>
-                    <div class="search-box-mobile hide-on-large-only">
-                        <div class="search-container">
-                            <form action="{% url 'product_list' %}" method="get">
-                                <input name="query" type="text" placeholder="제품 검색"/>
-                                <i class="material-icons">&#xE5CD;</i>
-                                <input class='submit hide' type="submit"/>
-                            </form>
                         </div>
-                    </div>
 
-                </div>
-            </nav>
-        </div>
+                    </div>
+                </nav>
+            </div>
+            {% block side-nav %}
+                <ul id="slide-out" class="side-nav fixed">
+                    <li><a href="{% url 'product_list' slug=user.email %}">전체보기</a></li>
+                    <li><div class="divider"></div></li>
+                    <li><a href="#!">즐겨찾기</a></li>
+                    <li><a href="#!">보관함</a></li>
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li>
+                                <a class="collapsible-header active">내 리스트</a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="#!">+ NEW</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><div class="divider"></div></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="#!">설정</a></li>
+                    {% else %}
+                        <li><a href="/signup">회원가입</a></li>
+                        <li><a href="/login">로그인</a></li>
+                    {% endif %}
+                </ul>
+            {% endblock %}
+        </header>
     {% endblock %}
     {% block outer-container %}
     {% endblock %}
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-    </div>
+    <main>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
     {% block page-footer %}
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
-                    <div class="col s6">
-                        <h5 class="white-text">CARTMANGO</h5>
-                        <p class="grey-text text-lighten-4">모든 장바구니는 카트망고로 통한다</p>
-                    </div>
-                    <div class="col s6">
-                        <h5 class="white-text">GS SHOP</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">진유림</a></li>
-                            <li><a class="white-text" href="#!">장기효</a></li>
-                            <li><a class="white-text" href="#!">장석환</a></li>
-                            <li><a class="white-text" href="#!">임관훈</a></li>
-                        </ul>
-
-                    </div>
                     <div class="col s12">
                         <div class="fb-login-button" data-max-rows="1" data-size="icon" data-show-faces="true" data-auto-logout-link="false"></div>
                     </div>
@@ -196,7 +201,11 @@
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    Made with &#128155; <a href="https://github.com/milooy">GS SHOP</a>
+                    <a href="#!">Terms</a>
+                    <a href="#!">Security</a>
+                    <a href="#!">Status</a>
+                    <a href="#!">Help</a>
+                    <div class="right">© 2016 CARTMANGO</div>
                 </div>
             </div>
         </footer>
@@ -205,7 +214,8 @@
 {% block base-js %}
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="{% static 'js/jquery.query-object.js' %}"></script>
     <script src="{% static 'js/base.js' %}"></script>
     {% block js %}{% endblock %}
 {% endblock %}

@@ -1,0 +1,8 @@
+{% if page_obj.has_next %}
+    <div class="loader">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div class="next-page-container" data-next="{{ page_obj.next_page_number }}" style="display: none"></div>
+{% endif %}

@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block outer-container %}
-    {#<h2>살까 말까 할 때는 담으세요.</h2>#}
-    {#<h4>모두를 위한 장바구니, 카트망고입니다.</h4>#}
-
     <div id="index-banner" class="parallax-container">
         <div class="section no-pad-bot">
             <div class="container">
@@ -21,11 +18,8 @@
         </div>
         <div class="parallax"><img src="{% static 'img/home1.jpg' %}" alt="Unsplashed background img 1"></div>
     </div>
-
-
     <div class="container">
         <div class="section">
-
             <!--   Icon Section   -->
             <div class="row">
                 <div class="col s12 m4">
@@ -35,7 +29,6 @@
                         <p class="light">어느 쇼핑몰에 있던, 원클릭으로 담아 모아 볼 수 있습니다</p>
                     </div>
                 </div>
-
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center brown-text"><i class="material-icons">group</i></h2>
@@ -96,4 +89,31 @@
         <div class="parallax"><img src="{% static 'img/home1.jpg' %}" alt="Unsplashed background img 3"></div>
     </div>
 
+{% endblock %}
+{% block side-nav %}
+    <ul id="slide-out" class="side-nav home fixed">
+        <li><a href="{% url 'product_list' slug=user.email %}">전체보기</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="#!">즐겨찾기</a></li>
+        <li><a href="#!">보관함</a></li>
+        <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li>
+                    <a class="collapsible-header active">내 리스트</a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="#!">+ NEW</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li><div class="divider"></div></li>
+        {% if user.is_authenticated %}
+            <li><a href="#!">설정</a></li>
+        {% else %}
+            <li><a href="/signup">회원가입</a></li>
+            <li><a href="/login">로그인</a></li>
+        {% endif %}
+    </ul>
 {% endblock %}
