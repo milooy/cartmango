@@ -47,7 +47,7 @@ class ProductFilter(django_filters.FilterSet):
 class ProductListView(ListView, FilterMixin):
     model = PersonalProduct
     template_name = '_product_list.html'
-    paginate_by = 3
+    paginate_by = 20
     filter_class = ProductFilter
 
     def get_queryset(self, *args, **kwargs):
