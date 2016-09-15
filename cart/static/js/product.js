@@ -25,41 +25,19 @@ function materializeInit() {
     );
 }
 
-function filteredUrl(filter_name, val) {
-    var url;
-    var href = location.href;
-    var pathname = location.pathname;
-    var search = location.search;
-    var filter_value = search.getValueByKey(filter_name);
-    if(filter_value) {
-        var filter_val = location.search.getValueByKey(filter_name);
-        url = pathname + search.replace(filter_val, val);
-    } else {
-        if(search) {
-            url = href + '&'+filter_name+'=' + val;
-        } else {
-            url = href + '?'+filter_name+'=' + val;
-        }
-    }
-    return url;
-}
-
 function initSelectBox(name_list) {
     name_list.forEach(function(name) {
         $("select.select-"+name).change(function() {
-            window.location = filteredUrl(name, this.value);
+            location_search = $.query.parseNew(location_search, name+"="+this.value).REMOVE('page').toString();
+            List.init(location.pathname+'items/'+location_search);
         });
-
-        var val = location.search.getValueByKey(name);
-        if(val) {
-            $(".select-"+ name +" option[value="+ val +"]").attr("selected", "selected");
-        }
     });
 }
 
 var List = {
-    init: function() {
-        this.get(location.pathname+'items/'+location_search);
+    init: function(url) {
+        console.log("GET LIST: ", url);
+        this.get(url);
         this.infiniteScroll()
     },
     get: function(url) {
@@ -70,6 +48,7 @@ var List = {
     },
     getByScroll: function(next_page) {
         var parsedQuery = $.query.parseNew(location_search, "page="+next_page).toString();
+        console.log("GET NEXT LIST: ", location.pathname+'items/'+ parsedQuery);
         $.get(location.pathname+'items/'+ parsedQuery, function(data) {
             $('.loader').remove();
             $('section.product_list_section').append(data);
@@ -95,7 +74,7 @@ var List = {
 };
 
 $(document).ready(function () {
-    List.init();
+    List.init(location.pathname+'items/'+location_search);
     materializeInit();
     initSelectBox(['order', 'list']);
 });
