@@ -22,19 +22,6 @@
         </div>
     </div>
     <div class="row product-list">
-        {% if request.GET.query %}
-            <h3 class="header"><strong>#</strong> {{ request.GET.query }} 모아보기</h3>
-            {% if not object_list %}
-                <section class="center-block center-align">
-                    <h5 class="header">검색 결과가 없습니다.</h5>
-                    <ul class="search-info">
-                        <li>단어 철자를 확인해 주세요.</li>
-                        <li>띄어쓰기를 다시 해보세요.</li>
-                        <li>보다 일반적인 단어로 검색해주세요.</li>
-                    </ul>
-                </section>
-            {% endif %}
-        {% endif %}
         <section class="product_list_section"></section>
     </div>
 {% endblock %}

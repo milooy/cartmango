@@ -29,19 +29,27 @@ h3 {
 h3.header {
   padding: 9px;
   font-size: 1.4em;
-  border: 2px solid @light-gray-2;
-  color: @light-gray-2;
+  border: 2px solid @material-gray;
+  color: @font-primary;
   font-weight: 300;
   margin: 0 0 10px;
   strong {
     color: @primary-light;
-    font-weight: 300;
+    font-weight: 500;
+  }
+  @media @l-s {
+    padding: 7px;
+    font-size: 1.2em;
+    margin: 10px 0 2px;
   }
 }
 h4 {
   font-size: 1.1rem;
   font-weight: 600;
   color: @primary;
+}
+h5 {
+  margin: 3rem;
 }
 img.avatar {
   width: 3rem;

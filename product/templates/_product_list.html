@@ -1,4 +1,19 @@
 {% load humanize %}{% load staticfiles %}
+{% if request.GET.query %}
+    <div class="col s12">
+        <h3 class="header"><strong>#</strong> {{ request.GET.query }} 모아보기</h3>
+        {% if not object_list %}
+            <section class="center-block center-align">
+                <h5 class="header">검색 결과가 없습니다.</h5>
+                <ul class="search-info">
+                    <li>단어 철자를 확인해 주세요.</li>
+                    <li>띄어쓰기를 다시 해보세요.</li>
+                    <li>보다 일반적인 단어로 검색해주세요.</li>
+                </ul>
+            </section>
+        {% endif %}
+    </div>
+{% endif %}
 {% for personal_product in object_list %}
     <div class="col s6 m4 l3">
         <div class="product-card">
@@ -77,6 +92,8 @@
         </div>
     </div>
 {% empty %}
-    리스트가 비었습니다
+    {% if not request.GET.query %}
+        리스트가 비었습니다
+    {% endif %}
 {% endfor %}
 {% include '_loader.html' %}
