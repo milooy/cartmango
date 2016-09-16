@@ -22,17 +22,22 @@
             {% endif %}
             <a target="_blank" href="{{ personal_product.product.url }}">
                 <img class="product-img" src="{{ personal_product.product.thumbnail_url}}"/>
-                <div class="info">
+            </a>
+            <div class="info">
+                <a target="_blank" href="{{ personal_product.product.url }}">
                     <div class="inner">
                         <h3>{{ personal_product.product.name|truncatechars:33 }}</h3>
                         <div class="price">{{ personal_product.product.price|intcomma }}원</div>
                     </div>
+                </a>
+                <a href="?query={{ personal_product.product.mall.name }}">
                     <div class="mall-name">
                         <img src="{{ personal_product.product.mall.thumbnail_url }}"/>
                         {{ personal_product.product.mall.name }}
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+
             <a class='dropdown-button right' href='#' data-activates='dropdown{{ personal_product.id }}'>
                 <i class="material-icons">&#xE5CF;</i>
             </a>

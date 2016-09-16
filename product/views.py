@@ -16,14 +16,16 @@ class ProductFilter(django_filters.FilterSet):
     query = django_filters.MethodFilter()
     order = django_filters.MethodFilter()
     list = django_filters.MethodFilter()
+    mall = django_filters.MethodFilter()
 
     class Meta:
         model = Product
-        fields = ['query', 'order', 'list']
+        fields = ['query', 'order', 'list', 'mall']
 
     def filter_query(self, queryset, value):
         return queryset.filter(
             Q(product__name__icontains=value) |
+            Q(product__mall__name__icontains=value) |
             Q(tags__name__icontains=value)
         ).distinct()
 
