@@ -1,5 +1,4 @@
 # CARTMANGO
-![CARTMANGO](https://giant.gfycat.com/ComfortableTidyBighornedsheep.gif)
 ![CARTMANGO](https://thumbs.gfycat.com/ComfortableTidyBighornedsheep-size_restricted.gif)
 
 흩어져 있는 장바구니와 위시리스트에 지치셨나요?
