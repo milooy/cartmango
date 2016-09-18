@@ -88,7 +88,7 @@ class Mall(TimeStampedModel):
 
 
 class List(TimeStampedModel):
-    name = models.CharField(u'리스트 이름', max_length=200)
+    name = models.CharField(u'리스트 이름', unique=True, max_length=200)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=u'사용자',
                              related_name='my_list')
     product = models.ManyToManyField(PersonalProduct, verbose_name=u'리스트 제품', blank=True)

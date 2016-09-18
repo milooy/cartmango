@@ -110,24 +110,26 @@
             <div class="navbar-fixed">
                 <nav class="nav-main nav-dark nav-transparent" role="navigation">
                     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src="{% static 'img/logo.png' %}"/></a>
-                        <ul class="search-ul-large right hide-on-med-and-down">
-                            <li class="search">
-                                <a href="#" class="search-large">
-                                    <i class="material-icons">&#xE8B6;</i>
-                                </a>
-                            </li>
-                            <li class="search-box">
-                                <div class="search-container">
-                                    <form action="{% url 'product_list' slug=user.email %}" method="get">
-                                        <input name="query" type="text" placeholder="검색"/>
-                                        <input class='submit hide' type="submit"/>
-                                    </form>
-                                </div>
-                            </li>
-                            <li class="close">
-                                <i class="material-icons">&#xE5CD;</i>
-                            </li>
-                        </ul>
+                        {% if user.is_authenticated %}
+                            <ul class="search-ul-large right hide-on-med-and-down">
+                                <li class="search">
+                                    <a href="#" class="search-large">
+                                        <i class="material-icons">&#xE8B6;</i>
+                                    </a>
+                                </li>
+                                <li class="search-box">
+                                    <div class="search-container">
+                                        <form action="{% url 'product_list' slug=user.email %}" method="get">
+                                            <input name="query" type="text" placeholder="검색"/>
+                                            <input class='submit hide' type="submit"/>
+                                        </form>
+                                    </div>
+                                </li>
+                                <li class="close">
+                                    <i class="material-icons">&#xE5CD;</i>
+                                </li>
+                            </ul>
+                        {% endif %}
                         <ul id="nav-top" class="right account-large hide-on-med-and-down">
                             {% if user.is_authenticated %}
                                 <li class="user-info"><a class="dropdown-button" href="#!" data-activates="account-dropdown">
@@ -139,33 +141,37 @@
                             {% endif %}
                         </ul>
                         <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-                        <a href="#" class="search-mobile right hide-on-large-only"><i class="material-icons">&#xE8B6;</i></a>
-                        <div class="search-box-mobile hide-on-large-only">
-                            <div class="search-container">
-                                <form action="{% url 'product_list' slug=user.email %}" method="get">
-                                    <input name="query" type="text" placeholder="제품 검색"/>
-                                    <i class="material-icons">&#xE5CD;</i>
-                                    <input class='submit hide' type="submit"/>
-                                </form>
+                        {% if user.is_authenticated %}
+                            <a href="#" class="search-mobile right hide-on-large-only"><i class="material-icons">&#xE8B6;</i></a>
+                            <div class="search-box-mobile hide-on-large-only">
+                                <div class="search-container">
+                                    <form action="{% url 'product_list' slug=user.email %}" method="get">
+                                        <input name="query" type="text" placeholder="제품 검색"/>
+                                        <i class="material-icons">&#xE5CD;</i>
+                                        <input class='submit hide' type="submit"/>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-
+                        {% endif %}
                     </div>
                 </nav>
             </div>
             {% block side-nav %}
                 <ul id="slide-out" class="side-nav fixed">
-                    <li><a href="{% url 'product_list' slug=user.email %}">전체보기</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'product_list' slug=user.email %}">전체보기</a></li>
+                    {% endif %}
                     <li><div class="divider"></div></li>
                     <li><a href="#!">즐겨찾기</a></li>
                     <li><a href="#!">보관함</a></li>
+                    <li><div class="divider"></div></li>
                     <li class="no-padding">
                         <ul class="collapsible collapsible-accordion">
                             <li>
                                 <a class="collapsible-header active">내 리스트</a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li><a href="#!">+ NEW</a></li>
+                                        <li><a class="modal-trigger" href="#new-list">+ NEW</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -210,6 +216,24 @@
             </div>
         </footer>
     {% endblock %}
+    <div id="new-list" class="modal">
+        <form action="/your-name/" method="post">
+            <div class="modal-content">
+                <h4>새 리스트 만들기</h4>
+
+                {% csrf_token %}
+                {{ form }}
+
+
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="OK">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">생성</a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">생성</a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat left">취소</a>
+            </div>
+        </form>
+    </div>
 {% endblock %}
 {% block base-js %}
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>

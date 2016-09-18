@@ -1,4 +1,19 @@
 {% load humanize %}{% load staticfiles %}
+{% if request.GET.query %}
+    <div class="col s12">
+        <h3 class="header"><strong>#</strong> {{ request.GET.query }} 모아보기</h3>
+        {% if not object_list %}
+            <section class="center-block center-align">
+                <h5 class="header">검색 결과가 없습니다.</h5>
+                <ul class="search-info">
+                    <li>단어 철자를 확인해 주세요.</li>
+                    <li>띄어쓰기를 다시 해보세요.</li>
+                    <li>보다 일반적인 단어로 검색해주세요.</li>
+                </ul>
+            </section>
+        {% endif %}
+    </div>
+{% endif %}
 {% for personal_product in object_list %}
     <div class="col s6 m4 l3">
         <div class="product-card">
@@ -7,17 +22,22 @@
             {% endif %}
             <a target="_blank" href="{{ personal_product.product.url }}">
                 <img class="product-img" src="{{ personal_product.product.thumbnail_url}}"/>
-                <div class="info">
+            </a>
+            <div class="info">
+                <a target="_blank" href="{{ personal_product.product.url }}">
                     <div class="inner">
                         <h3>{{ personal_product.product.name|truncatechars:33 }}</h3>
                         <div class="price">{{ personal_product.product.price|intcomma }}원</div>
                     </div>
+                </a>
+                <a href="?query={{ personal_product.product.mall.name }}">
                     <div class="mall-name">
                         <img src="{{ personal_product.product.mall.thumbnail_url }}"/>
                         {{ personal_product.product.mall.name }}
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+
             <a class='dropdown-button right' href='#' data-activates='dropdown{{ personal_product.id }}'>
                 <i class="material-icons">&#xE5CF;</i>
             </a>
@@ -77,6 +97,8 @@
         </div>
     </div>
 {% empty %}
-    리스트가 비었습니다
+    {% if not request.GET.query %}
+        리스트가 비었습니다
+    {% endif %}
 {% endfor %}
 {% include '_loader.html' %}

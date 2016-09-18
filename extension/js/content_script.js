@@ -80,7 +80,7 @@ function onWindowLoad() {
 
   $("#go_to_homepage").click(function() {
     // console.log("clicked");
-    chrome.tabs.create({url: "http://10.53.41.241:8000/list/" });
+    chrome.tabs.create({url: "http://localhost:8000/list/" });
   });
 
   var product_image = document.querySelector('#product_image');

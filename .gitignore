@@ -58,6 +58,9 @@ docs/_build/
 # PyBuilder
 target/
 
+.env
+.idea
+
 # Created by .ignore support plugin (hsz.mobi)
 bower_components
 node_modules
