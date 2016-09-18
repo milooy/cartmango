@@ -50,8 +50,6 @@
 
         </div>
     </div>
-
-
     <div class="parallax-container valign-wrapper">
         <div class="section no-pad-bot">
             <div class="container">
@@ -62,10 +60,8 @@
         </div>
         <div class="parallax"><img src="{% static 'img/home2.jpg' %}" alt="Unsplashed background img 2"></div>
     </div>
-
     <div class="container">
         <div class="section">
-
             <div class="row">
                 <div class="col s12 center">
                     <h3><i class="mdi-content-send brown-text"></i></h3>
@@ -92,10 +88,13 @@
 {% endblock %}
 {% block side-nav %}
     <ul id="slide-out" class="side-nav home fixed">
-        <li><a href="{% url 'product_list' slug=user.email %}">전체보기</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'product_list' slug=user.email %}">전체보기</a></li>
+        {% endif %}
         <li><div class="divider"></div></li>
         <li><a href="#!">즐겨찾기</a></li>
         <li><a href="#!">보관함</a></li>
+        <li><div class="divider"></div></li>
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li>

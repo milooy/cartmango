@@ -1,13 +1,14 @@
 from django.core.paginator import EmptyPage
 from django.db.models import Q
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.conf import settings
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import ListView
 import django_filters
 
 from accounts.models import MyUser
 from cart.mixins import FilterMixin
+from .forms import NewListForm
 
 from .models import Product, PersonalProduct
 
@@ -69,3 +70,26 @@ class ProductListView(ListView, FilterMixin):
 def personal_product_list(request, slug):
     user = get_object_or_404(MyUser, email=slug)
     return render(request, 'list.html', {'user':user})
+
+
+def pre_product_list(request):
+    return redirect('product_list', slug=request.user.email)
+
+
+def get_name(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = NewListForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NewListForm()
+
+    return render(request, 'name.html', {'form': form})
