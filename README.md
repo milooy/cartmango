@@ -1,5 +1,16 @@
 # CARTMANGO
-통합 쇼핑카트 앱
+<iframe src='https://gfycat.com/ifr/ComfortableTidyBighornedsheep' frameborder='0' scrolling='no' width='640' height='360' allowfullscreen></iframe>
+
+흩어져 있는 장바구니와 위시리스트에 지치셨나요?
+카트망고와 함께라면 어디서든 물건을 담고 모아서 볼 수 있습니다.
+태그와 리스트로 쉽게 분류하고 공유할 수 있습니다.
+
+Pull Request로 개발 과정에 직접 참여하세요!
+
+## 지원
+- Chrome Extension
+- iOS APP (In development)
+- Android APP (In development)
 
 ## 환경
 python version: 3.4.3
