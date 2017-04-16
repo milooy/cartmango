@@ -13,6 +13,7 @@ section.intro {
 
 /* PRODUCT */
 .p-info {
+  margin-top: 4px;
   height: 4.5rem;
   text-align: center;
 }
@@ -25,11 +26,11 @@ section.intro {
 .p-shop {
   display: inline-block;
   color: darkgrey;
-    font-weight: 300;
-    margin-right: 3px;
+  font-weight: 300;
+  margin-right: 3px;
 }
 .p-price {
   display: inline-block;
   font-weight: 500;
-color: #f2be21;
+  color: #f2be21;
 }
