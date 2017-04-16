@@ -1,16 +1,22 @@
 {
-  "manifest_version": 2,
-
-  "name": "Cart Mango",
+  "name": "CARTMANGO",
   "description": "This extension shows you the future of online shopping",
-  "version": "1.0.0",
-  "author": "Captain Pangyo",
+  "version": "1.0",
+  "author": "Captain Pangyo and Jayjin",
 
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+
+  "options_page": "options.html",
+  
   "browser_action": {
     "default_icon": {
-        "19" : "img/icon-tilted.png",
-        "38" : "img/icon-tilted.png"
-      },
+      "19" : "img/icon-tilted.png",
+      "38" : "img/icon-tilted.png"
+    },
+    "default_title": "CARTMANGO",
     "default_popup": "popup.html"
   },
   "icons": {
@@ -19,30 +25,5 @@
     "128" : "img/icon-tilted.png"
   },
 
-  "background": {
-    "scripts": [
-      "chrome_ex_oauthsimple.js",
-      "chrome_ex_oauth.js",
-      "js/background.js"
-    ]
-  },
-  "content_scripts": [
-    {
-      "matches": ["http://*/*","https://*/*","<all_urls>"],
-      "js": ["js/jquery.js","js/content_script.js"]
-    }
-  ],
-  "permissions": [
-    "tabs", "identity", "<all_urls>", "storage", "http://*/*", "https://*/*",
-    "https://docs.google.com/feeds/*",
-    "https://www.google.com/accounts/OAuthGetRequestToken",
-    "https://www.google.com/accounts/OAuthAuthorizeToken",
-    "https://www.google.com/accounts/OAuthGetAccessToken"
-  ],
-  "oauth2": {
-    "client_id": "361454977408-pq63n00gnmbd9tibv7fqsi4j0cv87fb2.apps.googleusercontent.com",
-    "scopes": [
-            "https://www.googleapis.com/auth/userinfo.email"
-    ]
-  }
+  "manifest_version": 2
 }

@@ -1,14 +1,29 @@
 // 페이지 역할 : Extension Popup.html 의 DOM 접근
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
+  var queryInfo = {
+    active: true,
+    currentWindow: true
+  };
 
-  chrome.tabs.getSelected(null, function(tab) {
+  chrome.tabs.query(queryInfo, function(tabs) {
+    var tab = tabs[0];
+    var url = tab.url;
+
     chrome.tabs.sendRequest(tab.id, {action: "getDocument"}, function(response) {
       console.log("상품 가격 : ", response.price);
       product_price.innerText = response.price + '원';
       chrome.storage.local.set({"price" : response.price});
     });
   });
+
+  // chrome.tabs.getSelected(null, function(tab) {
+  //   chrome.tabs.sendRequest(tab.id, {action: "getDocument"}, function(response) {
+  //     console.log("상품 가격 : ", response.price);
+  //     product_price.innerText = response.price + '원';
+  //     chrome.storage.local.set({"price" : response.price});
+  //   });
+  // });
 
   if (request.action == "getProductInfo") {
     // console.log(request);
@@ -33,9 +48,18 @@ function domInspector() {
   // 브라우저에 로딩된 웹 페이지 DOM 에 접근
   // var price = "";
 
-  chrome.tabs.getSelected(null, function(tab) {
+  var queryInfo = {
+    active: true,
+    currentWindow: true
+  };
+
+  chrome.tabs.query(queryInfo, function(tabs) {
+    var tab = tabs[0];
+    var url = tab.url;
+
     chrome.tabs.sendRequest(tab.id, {action: "getDocument"}, function(response) {
       console.log("상품 가격 : ", response.price);
+      product_price.innerText = response.price + '원';
       chrome.storage.local.set({"price" : response.price});
     });
   });
@@ -78,10 +102,7 @@ function onWindowLoad() {
 
   domInspector();
 
-  $("#go_to_homepage").click(function() {
-    // console.log("clicked");
-    chrome.tabs.create({url: "http://localhost:8000/list/" });
-  });
+
 
   var product_image = document.querySelector('#product_image');
   var product_name = document.querySelector('#product_name');
@@ -97,6 +118,22 @@ function onWindowLoad() {
     if (chrome.runtime.lastError) {
       message.innerText = 'There was an error injecting script : \n' + chrome.runtime.lastError.message;
     }
+  });
+
+  /* 카트에 저장 버튼 */
+  $("#save_cart").click(function() {
+    console.log("히잉")
+    message('Error: No value specified');
+    // var theValue = textarea.value;
+    // if (!theValue) {
+    //   message('Error: No value specified');
+    //   return;
+    // }
+    // chrome.storage.sync.set({'value': theValue}, function() {
+    //   message('Settings saved');
+    // });
+
+    // chrome.tabs.create({url: "http://localhost:8000/list/" });
   });
 
   // $("button").click(function() {

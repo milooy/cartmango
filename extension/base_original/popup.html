@@ -1,0 +1,71 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html style=''>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cart Mango</title>
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+        padding: 15px 15px;
+      }
+    </style>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/popup.css" rel="stylesheet">
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="js/jquery.js"></script>
+    <!-- <script src="popup.js"></script> -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/content_script.js"></script>
+  </head>
+  <body>
+    <h1>
+        <img class="icon" src="img/icon-tilted.png" alt="Wishcart Icon">
+        WISHCART
+    </h1>
+    <img id='product_image' src="" alt="Product Image" style="width:200px; height:200px;">
+    <div id='product_name'>상품 이름 불러오는 중</div>
+    <div id='product_price'>가격 불러오는 중</div>
+    <div class="mall-container">
+        <img class="product_site_img" src="img/gs_shop_logo.png" alt="Mall Icon">
+        <div id='product_site'>사이트 이름 불러오는 중</div>
+    </div>
+    <div align="center">
+      <button type="button" class="btn btn-list" id="save_cart">위시카트에 저장</button>
+    </div>
+    <!-- <button type="button" class="btn btn-success" id="price_inspector">가격 선택</button>
+    <button>서버로 보내기</button> -->
+    <h4 hidden><a id='product_url' href="">상품 URL</a></h4>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">담고 싶은 상품 가격을 클릭해주세요.</h4>
+          </div>
+          <div class="modal-body">
+            <p>Some text in the modal.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

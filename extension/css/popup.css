@@ -7,9 +7,7 @@ img.icon {
     width: 23px;
     vertical-align: bottom;
 }
-
-
-#product_name {
+#product_title {
     word-break: break-word;
     font-weight: bold;
     margin-top: 9px;
