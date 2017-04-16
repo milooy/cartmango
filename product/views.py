@@ -32,7 +32,8 @@ class ProductFilter(django_filters.FilterSet):
 
     def filter_order(self, queryset, value):
         if(value=='price-high'):
-            return queryset.order_by('-product__price')
+            self.by = queryset.order_by('-product__price')
+            return self.by
         elif(value=='price-low'):
             return queryset.order_by('product__price')
         else:
