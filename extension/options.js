@@ -32,13 +32,16 @@ $(function() {
       var product_list = items.product_list;
       console.log('프로덕트 리스트', product_list);
 
-      var container = $('<div />');
-      var product_list_DOM = product_list.map(function(d) {
-        console.log(d);
+
+      var product_list_DOM = $('<section />');
+      product_list.map(function(d) {
+        var container = $('<div />');
         container.append("<div>" + d.title + "</div>");
         container.append("<img src=" + d.img + ">");
+        product_list_DOM.prepend(container);
       })
-      $('.product_list').append(container);
+      $('.product_list').append(product_list_DOM);
+
     } else {
       message.innerText = "비었습니다";
     }
