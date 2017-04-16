@@ -33,12 +33,15 @@ $(function() {
       console.log('프로덕트 리스트', product_list);
 
 
-      var product_list_DOM = $('<section />');
+      var product_list_DOM = $('<div />').addClass('row');
       product_list.map(function(d) {
-        var container = $('<div />');
-        container.append("<div>" + d.title + "</div>");
-        container.append("<img src=" + d.img + ">");
-        product_list_DOM.prepend(container);
+        var $product_col = $('<a />').attr('href', d.url).attr('target', '_blank').addClass('product col s6 m4 l3');
+        var $product_info = $('<div />').addClass('p-info');
+        $product_col.append("<img src=" + d.img + " class='img-responsive'>");
+        $product_info.append("<div class='p-title'>" + d.title + "</div>");
+        $product_info.append("<p class='p-shop'>" + d.shop + "</p><p class='p-price'>" + d.price + "₩</p>");
+        $product_col.append($product_info);
+        product_list_DOM.prepend($product_col);
       })
       $('.product_list').append(product_list_DOM);
 

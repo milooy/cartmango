@@ -12,7 +12,7 @@ function getDataFromDOM() {
 }
 
 $(function() {
-  var optionsUrl = chrome.extension.getURL('options.html');
+  var pageUrl = chrome.extension.getURL('page.html');
   var product = null;
 
   chrome.tabs.executeScript({ code: '(' + getDataFromDOM + ')();' }, (results) => {
@@ -35,8 +35,8 @@ $(function() {
       });
     });
   });
-  
+
   $('#go_cart').click(function() {
-    chrome.tabs.create({url: optionsUrl });
+    chrome.tabs.create({url: pageUrl });
   });
 });

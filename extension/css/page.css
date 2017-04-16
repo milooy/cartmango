@@ -1,0 +1,35 @@
+/* INTRO */
+section.intro {
+  text-align: center;
+  margin: 3.5rem;
+}
+.intro .logo {
+  height: 35px;
+}
+.intro .slogan {
+  color: #c1bfb9;
+  margin-top: 4px;
+}
+
+/* PRODUCT */
+.p-info {
+  height: 4.5rem;
+  text-align: center;
+}
+.p-title {
+  height: 1.3rem;
+  overflow: hidden;
+  font-weight: bolder;
+  color: #5a5a5a;
+}
+.p-shop {
+  display: inline-block;
+  color: darkgrey;
+    font-weight: 300;
+    margin-right: 3px;
+}
+.p-price {
+  display: inline-block;
+  font-weight: 500;
+color: #f2be21;
+}
