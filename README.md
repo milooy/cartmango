@@ -1,5 +1,5 @@
 # CARTMANGO
-<iframe src='https://gfycat.com/ifr/ComfortableTidyBighornedsheep' frameborder='0' scrolling='no' width='640' height='360' allowfullscreen></iframe>
+![CARTMANGO](https://thumbs.gfycat.com/ComfortableTidyBighornedsheep-size_restricted.gif)
 
 흩어져 있는 장바구니와 위시리스트에 지치셨나요?
 카트망고와 함께라면 어디서든 물건을 담고 모아서 볼 수 있습니다.
@@ -22,7 +22,7 @@ django version: 1.10.1
 3. `npm install`, `bower update`로 프론트엔드 의존성 설치
 4. `python manage.py migrate`로 디비 마이그레이션
 5. `./manage.py createsuperuser`로 슈퍼유저 만들기
-6. SECRET_KEY, Facebook OAuth key는 [jayjin](jayjinjay@gmail.com)이 가지고 있으므로 secret.json파일을 요청한다.
+6. SECRET_KEY, Facebook OAuth key는 [jayjin](mailto:jayjinjay@gmail.com)이 가지고 있으므로 secret.json파일을 요청한다.
 
 ## 서버 띄우기
 1. `gulp`명령어로 less파일을 css로 컴파일, minify한다.
