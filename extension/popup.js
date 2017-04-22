@@ -85,8 +85,8 @@ $(function() {
   });
 
   // 4.21(금), added
-  $('#pick_price').click(function() {
-
-  });
+  // $('#pick_price').click(function() {
+  //   console.log("hello");
+  // });
 
 });
