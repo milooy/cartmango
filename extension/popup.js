@@ -83,4 +83,10 @@ $(function() {
   $('#go_cart').click(function() {
     chrome.tabs.create({url: pageUrl });
   });
+
+  // 4.21(금), added
+  $('#pick_price').click(function() {
+
+  });
+
 });

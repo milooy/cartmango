@@ -8,7 +8,12 @@
     "activeTab",
     "storage"
   ],
-
+  "content_scripts": [
+    {
+      "matches": ["http://*/*","https://*/*","<all_urls>"],
+      "js": ["jquery.js","js_original/content_script.js"]
+    }
+  ],
   "options_page": "page.html",
 
   "browser_action": {

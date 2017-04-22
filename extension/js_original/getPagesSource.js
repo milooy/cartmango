@@ -1,5 +1,4 @@
 // 페이지 역할 : 브라우저에 로딩된 페이지의 DOM 접근
-
 function getProductInfo(doc) {
 
   var productNameElement = document.querySelector('meta[property="og:title"]').content;
