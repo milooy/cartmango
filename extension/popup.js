@@ -91,7 +91,7 @@ $(function() {
 
 function pickPrice() {
   chrome.tabs.query({currentWindow: true, active : true}, function (tab) {
-    chrome.tabs.sendRequest(tab[0].id, {text: 'report_back'}, function (response) {
+    chrome.tabs.sendMessage(tab[0].id, {text: 'report_back'}, function (response) {
       console.log('I received the following DOM content:\n' , response);
     });
   });
