@@ -12,6 +12,26 @@ section.intro {
 }
 
 /* PRODUCT */
+.product {
+  position: relative;
+}
+.p-icon {
+  position: absolute;
+  right: 1rem;
+  top: 2px;
+  font-size: 1.3rem;
+  display: none;
+}
+.product:hover .p-icon{
+  display: block;
+}
+.p-icon .icon-pencil {
+  color: #add4ea;
+}
+.p-icon .icon-trash {
+  margin-left: 5px;
+  color: #ff7070;
+}
 .p-info {
   margin-top: 4px;
   height: 4.5rem;

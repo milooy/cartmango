@@ -25,33 +25,57 @@ loadChanges();
 // resetButton.addEventListener('click', reset);
 
 $(function() {
-  chrome.storage.sync.get("product_list", function (items) {
+  /* GET PRODUCT LIST */
+  function getProductList(callback) {
+    chrome.storage.sync.get("product_list", callback);
+  }
+
+  /* MAKE PRODUCT LIST DOM */
+  function makeProductListDOM(product_list) {
+    var product_list_DOM = $('<div />').addClass('row');
+    product_list.map(function(d) {
+      var $product_col = $('<a />').attr('href', d.url).attr('target', '_blank').addClass('product col s6 m4 l3');
+      var $product_info = $('<div />').addClass('p-info');
+      var $product_icon = $('<div />').addClass('p-icon');
+      $product_icon.append("<span class='icon-pencil'></span>").append("<span class='icon-trash'></span>");
+      $product_col.append("<img src=" + d.img + " class='img-responsive'>").append($product_icon)
+      $product_info.append("<div class='p-title'>" + d.title + "</div>");
+      $product_info.append("<p class='p-shop'>" + d.shop + "</p><p class='p-price'>" + d.price + "₩</p>");
+      $product_col.append($product_info);
+      product_list_DOM.prepend($product_col);
+    })
+    $('.product_list').html(product_list_DOM);
+    $('.icon-trash').click(function(e) {
+      e.preventDefault();
+      var target_url = $(e.target.closest('a')).attr('href');
+      if(confirm('삭제하시겠어요?')) {
+        setProductList(product_list.filter(function(d) {
+          return d.url != target_url;
+        }));
+      }
+    });
+  }
+
+  /* SET PRODUCT LIST AND REFRESH LIST */
+  function setProductList(product_list) {
+    chrome.storage.sync.set({'product_list': product_list}, function() {
+      console.log("저장되었당");
+      makeProductListDOM(product_list);
+    });
+  }
+
+  /* INIT PRODUCT LIST */
+  getProductList(function(items) {
     console.log('아이템', items)
     var message = document.querySelector('.message');
     if (items.product_list) {
       var product_list = items.product_list;
-      console.log('프로덕트 리스트', product_list);
-
-
-      var product_list_DOM = $('<div />').addClass('row');
-      product_list.map(function(d) {
-        var $product_col = $('<a />').attr('href', d.url).attr('target', '_blank').addClass('product col s6 m4 l3');
-        var $product_info = $('<div />').addClass('p-info');
-        $product_col.append("<img src=" + d.img + " class='img-responsive'>");
-        $product_info.append("<div class='p-title'>" + d.title + "</div>");
-        $product_info.append("<p class='p-shop'>" + d.shop + "</p><p class='p-price'>" + d.price + "₩</p>");
-        $product_col.append($product_info);
-        product_list_DOM.prepend($product_col);
-      })
-      $('.product_list').append(product_list_DOM);
-
+      makeProductListDOM(product_list);
     } else {
       message.innerText = "비었습니다";
     }
   });
 });
-
-
 
 function saveChanges() {
   // Get the current CSS snippet from the form.
