@@ -12,26 +12,14 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     chrome.tabs.sendRequest(tab.id, {action: "getDocument"}, function(response) {
       console.log("상품 가격 : ", response.price);
       product_price.innerText = response.price + '원';
-      chrome.storage.local.set({"price" : response.price});
+      // chrome.storage.local.set({"price" : response.price});
     });
   });
-
-  // chrome.tabs.getSelected(null, function(tab) {
-  //   chrome.tabs.sendRequest(tab.id, {action: "getDocument"}, function(response) {
-  //     console.log("상품 가격 : ", response.price);
-  //     product_price.innerText = response.price + '원';
-  //     chrome.storage.local.set({"price" : response.price});
-  //   });
-  // });
 
   if (request.action == "getProductInfo") {
     // console.log(request);
 
     var product = request.source;
-    product_image.src = product.productImage;
-    product_name.innerText = product.productName;
-    product_url.href = product.productUrl;
-    product_site.innerText = product.productSiteElement;
   }
 
   // if (request.action == "getProductPrice") {
@@ -45,8 +33,6 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 // 가격 태그 검사 및 가져오기
 function domInspector() {
   // 브라우저에 로딩된 웹 페이지 DOM 에 접근
-  // var price = "";
-
   var queryInfo = {
     active: true,
     currentWindow: true
@@ -56,10 +42,14 @@ function domInspector() {
     var tab = tabs[0];
     var url = tab.url;
 
-    chrome.tabs.sendRequest(tab.id, {action: "getDocument"}, function(response) {
-      console.log("상품 가격 : ", response.price);
-      product_price.innerText = response.price + '원';
-      chrome.storage.local.set({"price" : response.price});
+    console.log("tab : " , tab);
+    console.log("url : " , url);
+
+    chrome.tabs.sendRequest(tab.id, {action: "getPrice"}, function(response) {
+      console.log(response);
+      // console.log("상품 가격 : ", response.price);
+      // product_price.text = response.price + '원';
+      // chrome.storage.local.set({"price" : response.price});
     });
   });
 
@@ -96,23 +86,21 @@ function saveProductInfo(data) {
 
 // content_script.js 의 $ 접근은, 크롬 익스텐션에서 실행한 popup 페이지의 DOM 접근이다.
 function onWindowLoad() {
-  domInspector();
+  $("#pick_price").click(function () {
+    domInspector();
+  });
 
-  // var product_image = document.querySelector('#product_image');
-  // var product_name = document.querySelector('#product_name');
-  // var product_url = document.querySelector('#product_url');
+  chrome.tabs.executeScript(null, {
+    file: "js_original/getPagesSource.js"
+  }, function() {
+    // If you try and inject into an extensions page or the webstore/NTP you'll get an error
+    if (chrome.runtime.lastError) {
+      message.innerText = 'There was an er ror injecting script : \n' + chrome.runtime.lastError.message;
+    }
+  });
+
   var product_price = document.querySelector('#product_price');
-
   // var message = document.querySelector('#message');
-  //
-  // chrome.tabs.executeScript(null, {
-  //   file: "js/getPagesSource.js"
-  // }, function() {
-  //   // If you try and inject into an extensions page or the webstore/NTP you'll get an error
-  //   if (chrome.runtime.lastError) {
-  //     message.innerText = 'There was an error injecting script : \n' + chrome.runtime.lastError.message;
-  //   }
-  // });
 
   /* 카트에 저장 버튼 */
   $("#save_cart").click(function() {

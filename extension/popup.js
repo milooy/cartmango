@@ -69,7 +69,6 @@ $(function() {
     });
   });
 
-
   $('#save_cart').click(function() {
     chrome.storage.sync.get('product_list', function(items) {
       var product_list = items.product_list || [];
@@ -86,7 +85,14 @@ $(function() {
 
   // 4.21(금), added
   $('#pick_price').click(function() {
-
+    pickPrice();
   });
-
 });
+
+function pickPrice() {
+  chrome.tabs.query({currentWindow: true, active : true}, function (tab) {
+    chrome.tabs.sendMessage(tab[0].id, {text: 'report_back'}, function (response) {
+      console.log('I received the following DOM content:\n' , response);
+    });
+  });
+}
